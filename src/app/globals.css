@@ -24,6 +24,12 @@
   @media (width >= 40rem) {
     padding-inline: 2rem;
   }
+
+  /* En monitores grandes el contenido ocupa más ancho. */
+  @media (width >= 96rem) {
+    max-width: 92rem;
+    padding-inline: 3rem;
+  }
 }
 
 @layer base {

@@ -12,6 +12,8 @@ export const site = {
   whatsapp: "593995502096",
   email: "informacion@lexdata.com.ec",
   privacyEmail: "pdatos@lexdata.com.ec",
+  /** Acceso para clientes. Aún sin destino: poner aquí la URL del portal cuando exista. */
+  portalUrl: "#",
   address: {
     street: "Sucre 4-25 y Grijalva",
     city: "Ibarra",

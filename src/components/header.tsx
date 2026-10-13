@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { Clock, Mail, MapPin, Menu, Phone, UserRound, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,6 +38,12 @@ export function Header() {
               {site.hours[0].days} {site.hours[0].time}
             </li>
             <li>
+              <a href={site.phoneHref} className="flex items-center gap-2 hover:text-white">
+                <Phone aria-hidden className="size-3.5 text-gold" />
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
               <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-white">
                 <Mail aria-hidden className="size-3.5 text-gold" />
                 {site.email}
@@ -57,7 +63,7 @@ export function Header() {
       </div>
 
       <header className="sticky top-0 z-50 bg-ink text-white shadow-[0_2px_12px_rgb(0_0_0/0.25)]">
-        <div className="wrap flex h-20 items-center justify-between gap-6">
+        <div className="wrap flex h-20 items-center justify-between gap-6 2xl:h-24">
           <Link href="/" onClick={close} aria-label={`${site.name}, inicio`} className="shrink-0">
             <Image
               src="/img/logo.webp"
@@ -65,11 +71,11 @@ export function Header() {
               width={794}
               height={226}
               priority
-              className="h-11 w-auto"
+              className="h-11 w-auto 2xl:h-[3.25rem]"
             />
           </Link>
 
-          <nav aria-label="Principal" className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Principal" className="hidden items-center gap-6 lg:flex xl:gap-8 2xl:gap-11">
             {nav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
@@ -87,8 +93,8 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <a href={site.phoneHref} className="hidden items-center gap-3 xl:flex">
+          <div className="flex items-center gap-3">
+            <a href={site.phoneHref} className="mr-1 hidden items-center gap-3 2xl:flex">
               <span className="grid size-10 place-items-center bg-gold text-ink">
                 <Phone aria-hidden className="size-4" />
               </span>
@@ -105,6 +111,14 @@ export function Header() {
             >
               Agendar cita
             </a>
+            <Link
+              href={site.portalUrl}
+              onClick={close}
+              className="hidden items-center gap-2 border border-gold px-4 py-[0.6875rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold hover:text-ink sm:flex"
+            >
+              <UserRound aria-hidden className="size-4" />
+              Mi portal
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -143,6 +157,14 @@ export function Header() {
               >
                 Agendar cita por WhatsApp
               </a>
+              <Link
+                href={site.portalUrl}
+                onClick={close}
+                className="flex items-center justify-center gap-2 border border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
+              >
+                <UserRound aria-hidden className="size-4" />
+                Mi portal · Acceso para clientes
+              </Link>
               <a href={site.phoneHref}>Tel. {site.phoneDisplay}</a>
               <p>
                 {site.address.street}, {site.address.city}

@@ -45,20 +45,20 @@ export default function HomePage() {
           className="-z-20 object-cover"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
-        <div className="wrap pb-12 pt-12 sm:pb-16 sm:pt-16">
-          <div className="max-w-3xl">
+        <div className="wrap pb-12 pt-12 sm:pb-16 sm:pt-16 2xl:pb-20 2xl:pt-24">
+          <div className="max-w-3xl 2xl:max-w-4xl">
             <p className="flex items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold">
               <span aria-hidden className="h-px w-10 bg-gold" />
               Firma legal en Ibarra, Ecuador
             </p>
-            <h1 className="mt-4 font-display text-[2.5rem] font-bold leading-[1.1] sm:text-[3.5rem]">
+            <h1 className="mt-4 font-display text-[2.5rem] font-bold leading-[1.1] sm:text-[3.5rem] 2xl:text-[4.5rem]">
               Soluciones empresariales integrales
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-white/85">
+            <p className="mt-5 max-w-xl text-lg text-white/85 2xl:mt-7 2xl:max-w-2xl 2xl:text-xl">
               Cumplimiento normativo con visión estratégica. Asesoría legal especializada con
               enfoque estratégico y tecnológico.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-4 2xl:mt-10">
               <ButtonLink href="/contacto" variant="gold">
                 Solicitar consulta
               </ButtonLink>
@@ -69,17 +69,17 @@ export default function HomePage() {
           </div>
 
           {/* Tres pilares: una fila de texto separada por líneas finas, sin cajas. */}
-          <ul className="mt-12 grid border-t border-white/20 sm:mt-16 md:grid-cols-3">
+          <ul className="mt-12 grid border-t border-white/20 sm:mt-16 md:grid-cols-3 2xl:mt-24">
             {highlights.map(({ Icon, title, text }) => (
               <li
                 key={title}
-                className="border-b border-white/15 py-6 md:border-b-0 md:border-l md:px-8 md:py-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
+                className="border-b border-white/15 py-6 md:border-b-0 md:border-l md:px-8 md:py-7 md:first:border-l-0 md:first:pl-0 md:last:pr-0 2xl:px-12 2xl:py-9"
               >
-                <h2 className="flex items-center gap-3 font-display text-xl font-bold">
-                  <Icon aria-hidden className="size-5 shrink-0 text-gold" strokeWidth={1.5} />
+                <h2 className="flex items-center gap-3 font-display text-xl font-bold 2xl:text-2xl">
+                  <Icon aria-hidden className="size-5 shrink-0 text-gold 2xl:size-6" strokeWidth={1.5} />
                   {title}
                 </h2>
-                <p className="mt-2 text-[0.95rem] text-white/70">{text}</p>
+                <p className="mt-2 text-[0.95rem] text-white/70 2xl:text-base">{text}</p>
               </li>
             ))}
           </ul>
