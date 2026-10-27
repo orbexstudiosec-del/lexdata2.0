@@ -1,0 +1,2 @@
+# Archivos que se ejecutan en el servidor Linux: siempre con saltos de linea LF.
+deploy/** text eol=lf
