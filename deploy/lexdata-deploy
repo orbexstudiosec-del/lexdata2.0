@@ -1,0 +1,9 @@
+#!/bin/bash
+# Publica la última versión de GitHub (rama main).
+set -euo pipefail
+cd /srv/lexdata/app
+sudo -u lexdata git pull --ff-only
+sudo -u lexdata -H bash -c "CI=true pnpm install --frozen-lockfile --reporter=silent && NEXT_TELEMETRY_DISABLED=1 pnpm build"
+systemctl restart lexdata
+sleep 3
+curl -fsS -o /dev/null http://127.0.0.1:3000/ && echo "Publicado: $(sudo -u lexdata git log --oneline -1)"

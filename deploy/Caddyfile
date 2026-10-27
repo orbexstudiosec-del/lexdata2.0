@@ -1,0 +1,18 @@
+{
+	email informacion@lexdata.com.ec
+}
+
+lexdata.com.ec {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}
+
+www.lexdata.com.ec {
+	redir https://lexdata.com.ec{uri} permanent
+}
+
+# Acceso por IP mientras el dominio apunta al hosting anterior.
+http://2.31.79.129 {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}
