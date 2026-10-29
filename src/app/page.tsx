@@ -38,10 +38,10 @@ export default function HomePage() {
               Soluciones jurídicas especializadas con atención en todo el Ecuador.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
-              <ButtonLink href="/servicios" variant="gold">
+              <ButtonLink href="/servicios">
                 Conocer servicios
               </ButtonLink>
-              <ButtonLink href={whatsappUrl()} variant="outline">
+              <ButtonLink href={whatsappUrl()}>
                 Solicitar asesoría
               </ButtonLink>
             </div>
@@ -60,7 +60,7 @@ export default function HomePage() {
           <ServiceGrid />
         </div>
         <div className="mt-12 text-center">
-          <ButtonLink href="/servicios" variant="dark">
+          <ButtonLink href="/servicios">
             Ver servicios
           </ButtonLink>
         </div>
@@ -109,7 +109,7 @@ export default function HomePage() {
               </div>
             </dl>
             <div className="mt-9">
-              <ButtonLink href="/sobre-nosotros" variant="dark">
+              <ButtonLink href="/sobre-nosotros">
                 Conoce la firma
               </ButtonLink>
             </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
               asesoría jurídica especializada.
             </p>
           </div>
-          <ButtonLink href={reviewsUrl} variant="gold" className="shrink-0">
+          <ButtonLink href={reviewsUrl} className="shrink-0">
             Ver reseñas en Google
           </ButtonLink>
         </div>
@@ -156,7 +156,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <ButtonLink href="/noticias" variant="dark">
+          <ButtonLink href="/noticias">
             Todas las noticias
           </ButtonLink>
         </div>

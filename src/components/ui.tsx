@@ -2,27 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-const buttonBase =
-  "inline-block px-7 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300";
-
-const buttonVariants = {
-  gold: "bg-gold text-ink hover:bg-white",
-  /** Dorado sobre fondo claro: al pasar el cursor se vuelve azul marino. */
-  "gold-on-light": "bg-gold text-ink hover:bg-ink hover:text-white",
-  dark: "bg-ink text-white hover:bg-gold hover:text-ink",
-  /** Contorno blanco, para fondos oscuros. */
-  outline: "border border-white/70 text-white hover:bg-white hover:text-ink",
-} as const;
+const buttonClass =
+  "btn-gold inline-block px-7 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em]";
 
 type ButtonLinkProps = {
   href: string;
-  variant?: keyof typeof buttonVariants;
   className?: string;
   children: ReactNode;
 };
 
-export function ButtonLink({ href, variant = "gold-on-light", className = "", children }: ButtonLinkProps) {
-  const classes = `${buttonBase} ${buttonVariants[variant]} ${className}`;
+export function ButtonLink({ href, className = "", children }: ButtonLinkProps) {
+  const classes = `${buttonClass} ${className}`;
   if (/^(https?:|mailto:|tel:)/.test(href)) {
     const external = href.startsWith("http");
     return (

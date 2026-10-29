@@ -86,10 +86,10 @@ export default function DataProtectionPage() {
         title="Protección de Datos Personales en Ecuador"
         lead="Asesoría, implementación y cumplimiento de la LOPDP. Ayudamos a empresas, instituciones y profesionales a cumplir con la normativa de protección de datos personales mediante asesoría jurídica especializada, implementación de medidas de cumplimiento y acompañamiento profesional."
       >
-        <ButtonLink href={evaluationUrl} variant="gold">
+        <ButtonLink href={evaluationUrl}>
           Evaluación inicial sin costo
         </ButtonLink>
-        <ButtonLink href={site.portalUrl} variant="outline">
+        <ButtonLink href={site.portalUrl}>
           Acceso a clientes
         </ButtonLink>
       </PageHero>
@@ -152,7 +152,7 @@ export default function DataProtectionPage() {
             problema para tu organización.
           </p>
           <div className="mt-9">
-            <ButtonLink href={evaluationUrl} variant="gold">
+            <ButtonLink href={evaluationUrl}>
               Solicitar evaluación inicial sin costo
             </ButtonLink>
           </div>
@@ -193,7 +193,7 @@ export default function DataProtectionPage() {
           ))}
         </ul>
         <div className="mt-10 text-center">
-          <ButtonLink href={site.portalUrl} variant="dark">
+          <ButtonLink href={site.portalUrl}>
             Ingresar a la plataforma
           </ButtonLink>
         </div>

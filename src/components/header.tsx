@@ -98,14 +98,14 @@ export function Header() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden whitespace-nowrap bg-gold px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-white sm:block"
+              className="btn-gold hidden whitespace-nowrap px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink sm:block"
             >
               Agendar cita
             </a>
             <Link
               href={site.portalUrl}
               onClick={close}
-              className="hidden items-center gap-2 whitespace-nowrap border border-gold px-4 py-[0.6875rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold hover:text-ink sm:flex"
+              className="btn-gold hidden items-center gap-2 whitespace-nowrap px-4 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] sm:flex"
             >
               <UserRound aria-hidden className="size-4" />
               Mi portal
@@ -144,14 +144,14 @@ export function Header() {
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gold px-4 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink"
+                className="btn-gold px-4 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink"
               >
                 Agendar cita por WhatsApp
               </a>
               <Link
                 href={site.portalUrl}
                 onClick={close}
-                className="flex items-center justify-center gap-2 border border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
+                className="btn-gold flex items-center justify-center gap-2 px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em]"
               >
                 <UserRound aria-hidden className="size-4" />
                 Mi portal · Acceso para clientes

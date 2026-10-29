@@ -71,6 +71,21 @@
   background: linear-gradient(115deg, #a8843f 0%, #c6a35d 28%, #e0c17b 50%, #c6a35d 72%, #a8843f 100%);
 }
 
+/* Botón dorado metálico: el mismo degradado del logotipo, que se desplaza al pasar el cursor. */
+.btn-gold {
+  background: linear-gradient(115deg, #a8843f 0%, #c6a35d 25%, #e0c17b 50%, #c6a35d 75%, #a8843f 100%);
+  background-size: 200% 100%;
+  background-position: 0% 0;
+  color: var(--color-ink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 18px -10px rgb(166 128 52 / 0.7);
+  transition: background-position 0.5s ease, box-shadow 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-position: 100% 0;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 10px 24px -10px rgb(166 128 52 / 0.85);
+}
+
 /* Enlace de texto: subrayado dorado. */
 .link {
   text-decoration: underline;

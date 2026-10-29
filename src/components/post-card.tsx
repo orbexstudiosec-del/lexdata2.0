@@ -19,7 +19,7 @@ export function PostCard({ post, priority = false }: { post: Post; priority?: bo
         />
         <time
           dateTime={post.date}
-          className="absolute bottom-0 left-0 bg-gold px-4 py-2 text-[0.8125rem] font-semibold text-ink"
+          className="gold-metal absolute bottom-0 left-0 px-4 py-2 text-[0.8125rem] font-semibold text-ink"
         >
           {formatDate(post.date)}
         </time>
@@ -37,7 +37,7 @@ export function PostCard({ post, priority = false }: { post: Post; priority?: bo
           </Link>
         </h3>
         <p className="mt-3 text-[0.95rem] text-stone">{post.excerpt}</p>
-        <span className="mt-auto flex items-center gap-2 pt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink">
+        <span className="mt-auto flex items-center gap-2 pt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold-deep">
           Leer más
           <ArrowRight aria-hidden className="size-4 text-gold-deep" />
         </span>
