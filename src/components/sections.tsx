@@ -28,7 +28,7 @@ export function ServiceGrid({ linkToContact = false }: { linkToContact?: boolean
           {linkToContact ? (
             <Link
               href={`/contacto?servicio=${slug}`}
-              className="mt-auto pt-7 text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-gold-deep transition-colors hover:text-ink"
+              className="mt-auto pt-7 text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-ink transition-colors hover:text-gold-deep"
             >
               Solicitar asesoría →
             </Link>
