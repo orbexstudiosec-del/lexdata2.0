@@ -51,19 +51,27 @@ export function Credentials() {
       />
 
       <h3 className="mt-14 text-center font-display text-2xl font-bold">Certificaciones profesionales</h3>
-      <Image
-        src="/img/certificaciones/certificaciones.png"
-        alt={`Certificaciones del equipo: ${certifications.map((c) => c.name).join(", ")}.`}
-        width={1120}
-        height={368}
-        sizes="(min-width: 1280px) 72rem, 100vw"
-        className="mt-6 h-auto w-full"
-      />
-      <ul className="mt-6 grid gap-x-8 gap-y-2 text-[0.9rem] sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {certifications.map((c) => (
-          <li key={c.name} className="border-b border-paper-line py-2">
-            <span className="font-semibold">{c.name}</span>
-            <span className="text-stone"> · {c.detail}</span>
+          <li
+            key={c.name}
+            className="flex flex-col border-b-[3px] border-gold bg-white text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.22)]"
+          >
+            <div
+              className={`grid h-32 place-items-center p-4 ${c.tone === "dark" ? "bg-[#03080c]" : "bg-white"}`}
+            >
+              <Image
+                src={c.image}
+                alt={`Logotipo ${c.name}`}
+                width={200}
+                height={200}
+                className="h-24 w-auto max-w-full object-contain"
+              />
+            </div>
+            <div className="flex-1 border-t border-paper-line px-3 py-4">
+              <p className="font-display text-lg font-bold leading-tight">{c.name}</p>
+              <p className="mt-1 text-[0.8125rem] leading-snug text-stone">{c.detail}</p>
+            </div>
           </li>
         ))}
       </ul>

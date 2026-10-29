@@ -45,21 +45,24 @@ export function whatsappUrl(text = "Hola Lex Data Corp, quisiera solicitar aseso
   return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
-/** Certificaciones del equipo, en el mismo orden que la imagen `certificaciones.png`. */
+/**
+ * Certificaciones del equipo. `tone` indica el fondo para el que está hecho el logo:
+ * los recortados de la franja original vienen sobre negro.
+ */
 export const certifications = [
-  { name: "CISM", detail: "Certified Information Security Manager" },
-  { name: "CISA", detail: "Certified Information Systems Auditor" },
-  { name: "CRISC", detail: "Certified in Risk and Information Systems Control" },
-  { name: "CC", detail: "Certified in Cybersecurity (ISC2)" },
-  { name: "CCNA", detail: "Cisco Certified Network Associate" },
-  { name: "CCNP Enterprise", detail: "Cisco Certified Network Professional" },
-  { name: "CCNP Security", detail: "Cisco Certified Network Professional" },
-  { name: "Azure Fundamentals", detail: "Microsoft Certified" },
-  { name: "ISO 27001", detail: "Sistema de Gestión de Seguridad de la Información" },
-  { name: "ISO 27701", detail: "Sistema de Gestión de la Privacidad de la Información" },
-  { name: "ISO 9001", detail: "Sistema de Gestión de la Calidad" },
-  { name: "IRCA", detail: "International Register of Certificated Auditors" },
-  { name: "CDPP", detail: "Certified Data Privacy Professional (ISMS Forum)" },
+  { name: "CISM", detail: "Certified Information Security Manager", image: "/img/certificaciones/cism.webp", tone: "light" },
+  { name: "CISA", detail: "Certified Information Systems Auditor", image: "/img/certificaciones/cisa.webp", tone: "light" },
+  { name: "CRISC", detail: "Certified in Risk and Information Systems Control", image: "/img/certificaciones/crisc.webp", tone: "light" },
+  { name: "CC", detail: "Certified in Cybersecurity (ISC2)", image: "/img/certificaciones/isc2-cc.webp", tone: "light" },
+  { name: "CCNA", detail: "Cisco Certified Network Associate", image: "/img/certificaciones/ccna.png", tone: "dark" },
+  { name: "CCNP Enterprise", detail: "Cisco Certified Network Professional", image: "/img/certificaciones/ccnp-enterprise.png", tone: "dark" },
+  { name: "CCNP Security", detail: "Cisco Certified Network Professional", image: "/img/certificaciones/ccnp-security.png", tone: "dark" },
+  { name: "Azure Fundamentals", detail: "Microsoft Certified", image: "/img/certificaciones/azure-fundamentals.png", tone: "dark" },
+  { name: "ISO 27001", detail: "Sistema de Gestión de Seguridad de la Información", image: "/img/certificaciones/iso-27001.webp", tone: "light" },
+  { name: "ISO 27701", detail: "Sistema de Gestión de la Privacidad de la Información", image: "/img/certificaciones/iso-27701.png", tone: "dark" },
+  { name: "ISO 9001", detail: "Sistema de Gestión de la Calidad", image: "/img/certificaciones/iso-9001.webp", tone: "light" },
+  { name: "IRCA", detail: "International Register of Certificated Auditors", image: "/img/certificaciones/irca.png", tone: "dark" },
+  { name: "CDPP", detail: "Certified Data Privacy Professional (ISMS Forum)", image: "/img/certificaciones/cdpp.png", tone: "dark" },
 ] as const;
 
 export const training = {
