@@ -75,7 +75,7 @@ export function Header() {
             />
           </Link>
 
-          <nav aria-label="Principal" className="hidden items-center gap-6 lg:flex xl:gap-8 2xl:gap-11">
+          <nav aria-label="Principal" className="hidden items-center gap-6 xl:flex 2xl:gap-9">
             {nav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
@@ -83,7 +83,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`text-[0.8125rem] font-medium uppercase tracking-[0.08em] transition-colors hover:text-gold ${
+                  className={`whitespace-nowrap text-[0.8125rem] font-medium uppercase tracking-[0.08em] transition-colors hover:text-gold ${
                     active ? "text-gold" : "text-white"
                   }`}
                 >
@@ -94,27 +94,18 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href={site.phoneHref} className="mr-1 hidden items-center gap-3 2xl:flex">
-              <span className="grid size-10 place-items-center bg-gold text-ink">
-                <Phone aria-hidden className="size-4" />
-              </span>
-              <span className="leading-tight">
-                <span className="block text-xs text-mist">Llámanos</span>
-                <span className="font-semibold">{site.phoneDisplay}</span>
-              </span>
-            </a>
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden bg-gold px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-white sm:block"
+              className="hidden whitespace-nowrap bg-gold px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-white sm:block"
             >
               Agendar cita
             </a>
             <Link
               href={site.portalUrl}
               onClick={close}
-              className="hidden items-center gap-2 border border-gold px-4 py-[0.6875rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold hover:text-ink sm:flex"
+              className="hidden items-center gap-2 whitespace-nowrap border border-gold px-4 py-[0.6875rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold hover:text-ink sm:flex"
             >
               <UserRound aria-hidden className="size-4" />
               Mi portal
@@ -125,7 +116,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="menu-movil"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className="grid size-11 place-items-center border border-white/25 lg:hidden"
+              className="grid size-11 place-items-center border border-white/25 xl:hidden"
             >
               {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
             </button>
@@ -133,7 +124,7 @@ export function Header() {
         </div>
 
         {open ? (
-          <nav id="menu-movil" aria-label="Móvil" className="border-t border-line bg-ink lg:hidden">
+          <nav id="menu-movil" aria-label="Móvil" className="border-t border-line bg-ink xl:hidden">
             <ul className="wrap py-2">
               {nav.map((item) => (
                 <li key={item.href} className="border-b border-line last:border-b-0">

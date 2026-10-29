@@ -6,6 +6,7 @@ const pages = [
   { path: "", priority: 1 },
   { path: "/servicios", priority: 0.9 },
   { path: "/sobre-nosotros", priority: 0.7 },
+  { path: "/proteccion-de-datos", priority: 0.9 },
   { path: "/noticias", priority: 0.7 },
   { path: "/contacto", priority: 0.8 },
   { path: "/privacy-policy", priority: 0.2 },

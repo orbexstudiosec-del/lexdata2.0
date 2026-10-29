@@ -1,149 +1,122 @@
+import { BookOpen, Eye, Handshake, Target } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { Cta } from "@/components/cta";
+import { Credentials } from "@/components/sections";
 import { PageHero, Section, SectionHeading } from "@/components/ui";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Sobre nosotros",
+  title: "Nosotros",
   description:
-    "Lex Data Corp: una firma nacida en Ibarra para proteger la confianza, la legalidad y la reputación institucional de empresas y organizaciones.",
+    "Lex Data Corp® es una firma ecuatoriana de asesoría y consultoría jurídica especializada en Derecho Empresarial, Derecho Digital, Protección de Datos Personales y Cumplimiento Normativo.",
   alternates: { canonical: "/sobre-nosotros" },
 };
-
-const philosophy = [
-  {
-    title: "Cumplimiento como ventaja",
-    text: "Creemos que el cumplimiento no es una obligación, sino una ventaja estratégica que diferencia a las empresas líderes.",
-  },
-  {
-    title: "La ley como herramienta",
-    text: "La ley no es un obstáculo, sino una herramienta de poder que, bien utilizada, impulsa el crecimiento y la innovación.",
-  },
-  {
-    title: "Comunicación precisa",
-    text: "La comunicación institucional debe ser tan precisa como la norma que la respalda, para construir confianza y credibilidad.",
-  },
-];
-
-const differentiators = [
-  { title: "Enfoque proactivo", text: "Anticipamos riesgos antes de que se conviertan en problemas." },
-  {
-    title: "Tecnología integrada",
-    text: "Combinamos experiencia legal con soluciones tecnológicas avanzadas.",
-  },
-  { title: "Visión global", text: "Pensamiento internacional aplicado a realidades locales." },
-  { title: "Resultados medibles", text: "Cada acción está diseñada para generar valor tangible." },
-];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        crumb="Sobre nosotros"
-        title="Más allá del asesoramiento legal"
-        lead="Construimos certezas donde otros ven complejidad."
+        crumb="Nosotros"
+        title="Lex Data Corp® | Derecho Empresarial y Derecho Digital"
+        lead="Soluciones jurídicas especializadas para empresas y organizaciones."
       />
-
-      <Section id="quienes-somos">
-        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
-          <div>
-            <SectionHeading title="Quiénes somos" />
-            <div className="mt-5 grid max-w-2xl gap-4 text-lg">
-              <p>
-                Lex Data Corp es una firma nacida para proteger lo que otros descuidan: la
-                confianza, la legalidad y la reputación institucional.
-              </p>
-              <p>No vendemos servicios, construimos certezas.</p>
-              <p className="text-stone">
-                Cada norma, cada estrategia, cada palabra que emitimos tiene un propósito: blindar
-                a quienes deciden, orientar a quienes lideran y transformar lo complejo en
-                soluciones claras.
-              </p>
-            </div>
-          </div>
-          <dl className="self-start border border-paper-line border-t-4 border-t-gold bg-paper p-6">
-            <dt className="font-semibold">Protección integral</dt>
-            <dd className="text-stone">Defendemos lo que más valoras.</dd>
-            <dt className="mt-4 border-t border-paper-line pt-4 font-semibold">Estrategia legal</dt>
-            <dd className="text-stone">Anticipamos y prevenimos.</dd>
-          </dl>
-        </div>
-      </Section>
-
-      <Section band id="filosofia">
-        <SectionHeading
-          title="Creemos en el poder de la ley"
-          lead="Transformamos obligaciones en ventajas competitivas."
-        />
-        <ul className="mt-10 grid gap-8 md:grid-cols-3">
-          {philosophy.map((item) => (
-            <li key={item.title} className="border-t-2 border-ink pt-4">
-              <h3 className="font-display text-xl font-semibold">{item.title}</h3>
-              <p className="mt-2 text-stone">{item.text}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
 
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
-          <div>
-            <SectionHeading title="Desde Ibarra, hacia el mundo" />
-            <div className="mt-5 grid max-w-2xl gap-4 text-lg">
-              <p>
-                Desde el corazón de Ibarra marcamos el estándar nacional en derecho digital,
-                empresarial y normativo.
-              </p>
-              <p className="text-stone">
-                No seguimos tendencias: las definimos. Nuestra ubicación estratégica nos permite
-                comprender las realidades locales mientras aplicamos estándares globales.
-              </p>
-            </div>
-          </div>
-          <address className="self-start border border-paper-line bg-paper p-6 not-italic">
-            <h3 className="font-semibold">Nuestra sede</h3>
+        <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-20">
+          <div className="grid gap-4 text-stone">
+            <SectionHeading label="Quiénes somos" title="Una firma ecuatoriana especializada" />
             <p className="mt-2">
-              {site.address.street}
-              <br />
-              {site.address.city}, {site.address.country}
+              En Lex Data Corp® somos una firma ecuatoriana de asesoría y consultoría jurídica
+              especializada en Derecho Empresarial, Derecho Digital, Protección de Datos Personales y
+              Cumplimiento Normativo.
             </p>
-            <p className="mt-3 text-stone">
-              {site.hours.map((h) => (
-                <span key={h.days} className="block">
-                  {h.days}, {h.time}
-                </span>
-              ))}
+            <p>
+              Brindamos acompañamiento jurídico a empresas, instituciones, organizaciones y
+              profesionales, mediante soluciones orientadas a prevenir riesgos legales, fortalecer
+              sus procesos internos y facilitar el cumplimiento de sus obligaciones normativas.
             </p>
-            <p className="mt-4">
-              <Link href="/contacto" className="link font-medium">
-                Cómo contactarnos
-              </Link>
+            <p>
+              Nuestra práctica integra el conocimiento jurídico con una visión empresarial y
+              tecnológica, permitiéndonos abordar los desafíos que enfrentan las organizaciones en un
+              entorno regulatorio y digital en constante evolución.
             </p>
-          </address>
+            <p>
+              Con sede en Ibarra, Ecuador, ofrecemos nuestros servicios a nivel nacional,
+              proporcionando atención especializada y soluciones adaptadas a las necesidades de cada
+              organización.
+            </p>
+          </div>
+          <div className="relative mb-8 ml-5 sm:ml-8">
+            <span
+              aria-hidden
+              className="absolute -bottom-5 -left-5 h-2/3 w-2/3 border-[6px] border-gold sm:-bottom-8 sm:-left-8"
+            />
+            <Image
+              src="/img/stock/firma.jpg"
+              alt=""
+              width={1400}
+              height={933}
+              sizes="(min-width: 1024px) 32rem, 100vw"
+              className="relative aspect-[4/3] w-full object-cover"
+            />
+          </div>
         </div>
       </Section>
 
+      <section className="bg-ink py-16 text-white sm:py-24">
+        <div className="wrap grid gap-6 md:grid-cols-3">
+          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+            <Target aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
+            <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra misión</h2>
+            <p className="mt-3 text-mist">
+              Brindar asesoría y consultoría jurídica especializada, mediante soluciones preventivas,
+              estratégicas y orientadas al cumplimiento normativo, contribuyendo a la seguridad
+              jurídica, la gestión responsable de la información y el desarrollo sostenible de
+              nuestros clientes.
+            </p>
+          </article>
+          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+            <Eye aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
+            <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra visión</h2>
+            <p className="mt-3 text-mist">
+              Consolidarnos como una firma referente en Ecuador en Derecho Empresarial, Derecho
+              Digital y Protección de Datos Personales, reconocida por su especialización, rigor
+              profesional, innovación y compromiso con la excelencia.
+            </p>
+          </article>
+          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+            <Handshake aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
+            <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestro compromiso</h2>
+            <p className="mt-3 text-mist">
+              Entendemos que una asesoría jurídica efectiva va más allá de la elaboración de
+              documentos. Nuestro enfoque se fundamenta en el análisis de riesgos, la prevención de
+              contingencias legales, la implementación de mecanismos de cumplimiento y el
+              acompañamiento profesional continuo.
+            </p>
+            <p className="mt-3 text-mist">
+              Trabajamos para que nuestros clientes no solo conozcan sus obligaciones legales, sino
+              que cuenten con herramientas y soluciones para cumplirlas de manera efectiva.
+            </p>
+          </article>
+        </div>
+        <div className="wrap mt-6">
+          <div className="flex items-center gap-5 border-l-[3px] border-gold bg-ink-2 p-6">
+            <BookOpen aria-hidden className="size-9 shrink-0 text-gold" strokeWidth={1.25} />
+            <p>
+              <span className="block text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold">
+                Libros
+              </span>
+              <span className="font-display text-xl">«Neurolegalidad y Neuroderechos»</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
       <Section band>
-        <SectionHeading
-          title="No somos abogados convencionales"
-          lead="Somos arquitectos de seguridad jurídica en la era digital."
-        />
-        <ul className="mt-10 grid gap-x-14 gap-y-6 sm:grid-cols-2">
-          {differentiators.map((item) => (
-            <li key={item.title} className="border-t border-paper-line pt-4">
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="mt-1 text-stone">{item.text}</p>
-            </li>
-          ))}
-        </ul>
+        <Credentials />
       </Section>
 
-      <Cta
-        title="¿Listo para construir certezas?"
-        lead="Descubre cómo podemos transformar los desafíos legales de tu empresa en ventajas competitivas."
-        action="Iniciar conversación"
-      />
+      <Cta title="¿Hablamos de su próximo proyecto legal?" lead="Escríbanos para agendar una consulta inicial." action="Solicitar asesoría" />
     </>
   );
 }
