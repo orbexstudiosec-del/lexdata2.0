@@ -1,14 +1,14 @@
-import { Mail, MapPin, Phone, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
-import { Credentials, ServiceGrid } from "@/components/sections";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { posts } from "@/lib/posts";
-import { site, whatsappUrl } from "@/lib/site";
+import { services } from "@/lib/services";
+import { certifications, training, whatsappUrl } from "@/lib/site";
 
 const reviewsUrl = "https://www.google.com/maps/search/?api=1&query=Lex+Data+Corp+Ibarra+Ecuador";
-const mapUrl = "https://www.google.com/maps/search/?api=1&query=Sucre+4-25+y+Grijalva%2C+Ibarra%2C+Ecuador";
 
 export default function HomePage() {
   return (
@@ -56,9 +56,22 @@ export default function HomePage() {
           title="Un servicio legal completo, a su medida"
           lead="Ofrecemos consultoría, capacitación y auditoría en las siguientes áreas:"
         />
-        <div className="mt-14">
-          <ServiceGrid />
-        </div>
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {services.map(({ slug, icon: Icon, title }) => (
+            <li key={slug}>
+              <Link
+                href={`/servicios#${slug}`}
+                className="group flex h-full flex-col items-center border-b-[3px] border-transparent bg-white p-7 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)] transition-colors duration-300 hover:border-gold"
+              >
+                <Icon aria-hidden className="size-11 text-gold" strokeWidth={1.1} />
+                <h3 className="mt-4 font-display text-lg font-bold leading-snug">{title}</h3>
+                <span className="mt-auto pt-4 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold-deep">
+                  Ver más →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
         <div className="mt-12 text-center">
           <ButtonLink href="/servicios" variant="dark">
             Ver servicios
@@ -140,7 +153,30 @@ export default function HomePage() {
       </section>
 
       <Section band id="respaldo">
-        <Credentials />
+        <div className="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+          <Image
+            src={training.image}
+            alt={training.title}
+            width={306}
+            height={335}
+            className="mx-auto h-auto w-44"
+          />
+          <div>
+            <SectionHeading
+              label="Respaldo profesional"
+              title="Especialización y respaldo profesional"
+              lead={`${certifications.length} certificaciones internacionales (${certifications
+                .slice(0, 5)
+                .map((c) => c.name)
+                .join(", ")}, entre otras) y el ${training.title} (${training.institution}).`}
+            />
+            <div className="mt-8">
+              <ButtonLink href="/sobre-nosotros#respaldo" variant="dark">
+                Ver certificaciones
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
       </Section>
 
       <Section id="noticias">
@@ -160,41 +196,6 @@ export default function HomePage() {
             Todas las noticias
           </ButtonLink>
         </div>
-      </Section>
-
-      <Section band id="contacto">
-        <SectionHeading
-          center
-          label="Contacto"
-          title="Hablemos de su próximo proyecto legal"
-          lead="Escríbanos para agendar una consulta inicial."
-        />
-        <ul className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-3">
-          <li className="bg-white p-7 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)]">
-            <Phone aria-hidden className="mx-auto size-7 text-gold" strokeWidth={1.5} />
-            <p className="mt-3 font-display text-lg font-bold">Teléfono</p>
-            <a href={site.phoneHref} className="link">
-              {site.phoneDisplay}
-            </a>
-          </li>
-          <li className="bg-white p-7 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)]">
-            <Mail aria-hidden className="mx-auto size-7 text-gold" strokeWidth={1.5} />
-            <p className="mt-3 font-display text-lg font-bold">Correo</p>
-            <a href={`mailto:${site.email}`} className="link break-all">
-              {site.email}
-            </a>
-          </li>
-          <li className="bg-white p-7 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)]">
-            <MapPin aria-hidden className="mx-auto size-7 text-gold" strokeWidth={1.5} />
-            <p className="mt-3 font-display text-lg font-bold">Ubicación</p>
-            <p>
-              {site.address.street}, {site.address.city}
-            </p>
-            <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="link text-sm">
-              Ver en Google Maps
-            </a>
-          </li>
-        </ul>
       </Section>
 
       <Cta />

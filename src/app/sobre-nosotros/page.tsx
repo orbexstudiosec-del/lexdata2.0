@@ -112,7 +112,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Section band>
+      <Section band id="respaldo">
         <Credentials />
       </Section>
 
