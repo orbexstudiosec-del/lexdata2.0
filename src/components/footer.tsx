@@ -24,7 +24,7 @@ export function Footer() {
     <footer className="bg-ink-2 text-[0.95rem] text-mist">
       <div className="wrap grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
         <div>
-          <Image src="/img/logo.webp" alt={site.name} width={794} height={226} className="h-10 w-auto" />
+          <Image src="/img/logo.png" alt={site.name} width={1596} height={268} className="h-11 w-auto" />
           <p className="mt-5 max-w-xs">
             Protegemos los intereses digitales de empresas y profesionales, con experiencia legal y
             soluciones tecnológicas.

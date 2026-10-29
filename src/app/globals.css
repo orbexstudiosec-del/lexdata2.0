@@ -2,9 +2,9 @@
 
 @theme {
   /* Paleta corporativa de Lex Data Corp. */
-  --color-ink: #08090d; /* Negro corporativo: fondo principal */
-  --color-ink-2: #0b1628; /* Azul marino profundo: fondos alternativos */
-  --color-line: #1d2638;
+  --color-ink: #0b1628; /* Azul marino profundo: color primario */
+  --color-ink-2: #08090d; /* Negro corporativo: fondos alternativos (barra superior y pie) */
+  --color-line: #22314a;
   --color-gold: #c6a35d; /* Dorado metálico: títulos, líneas y acentos */
   --color-gold-soft: #e0c17b; /* Dorado luminoso: reflejos y degradados */
   --color-gold-deep: #85672a; /* Dorado oscuro para texto sobre fondo claro (contraste AA) */

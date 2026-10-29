@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08090d",
+  themeColor: "#0b1628",
   colorScheme: "light",
 };
 
@@ -51,8 +51,8 @@ const jsonLd = {
   legalName: site.legalName,
   taxID: site.ruc,
   url: site.url,
-  logo: `${site.url}/img/logo.webp`,
-  image: `${site.url}/img/logo.webp`,
+  logo: `${site.url}/img/logo-vertical.png`,
+  image: `${site.url}/img/logo-vertical.png`,
   description: site.description,
   telephone: site.phoneIntl,
   email: site.email,

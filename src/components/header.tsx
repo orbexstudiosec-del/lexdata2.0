@@ -66,12 +66,12 @@ export function Header() {
         <div className="wrap flex h-20 items-center justify-between gap-6 2xl:h-24">
           <Link href="/" onClick={close} aria-label={`${site.name}, inicio`} className="shrink-0">
             <Image
-              src="/img/logo.webp"
+              src="/img/logo.png"
               alt={site.name}
-              width={794}
-              height={226}
+              width={1596}
+              height={268}
               priority
-              className="h-11 w-auto 2xl:h-[3.25rem]"
+              className="h-9 w-auto 2xl:h-11"
             />
           </Link>
 

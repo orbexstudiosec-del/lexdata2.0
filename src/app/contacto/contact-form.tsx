@@ -136,7 +136,7 @@ export function ContactForm() {
             required
             aria-invalid={errors?.acepta ? true : undefined}
             aria-describedby={errors?.acepta ? "acepta-error" : undefined}
-            className="mt-1 size-4 shrink-0 accent-[#08090d]"
+            className="mt-1 size-4 shrink-0 accent-[#0b1628]"
           />
           <span>
             He leído y acepto la{" "}
