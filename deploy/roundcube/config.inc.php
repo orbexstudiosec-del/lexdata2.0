@@ -15,7 +15,7 @@ $config['product_name'] = 'Lex Data Corp · Correo';
 $config['support_url'] = '';
 $config['skin'] = 'elastic';
 $config['language'] = 'es_ES';
-$config['plugins'] = ['archive', 'zipdownload', 'markasjunk', 'managesieve'];
+$config['plugins'] = ['archive', 'zipdownload', 'markasjunk', 'managesieve', 'lexdata_login'];
 
 $config['des_key'] = 'GENERAR_32_CARACTERES_ALEATORIOS';
 $config['enable_installer'] = false;

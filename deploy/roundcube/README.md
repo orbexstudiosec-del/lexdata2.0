@@ -38,3 +38,10 @@ openssl rand -base64 48 | tr -dc 'A-Za-z0-9' | head -c 32
 Descargar el paquete `complete` de https://github.com/roundcube/roundcubemail/releases, comprobar su
 SHA-256 con el publicado en la versión, y seguir `bin/installto.sh` según la guía oficial. Hacer
 copia de `config/config.inc.php` y de `/var/lib/roundcube/` antes.
+
+## Diseño del inicio de sesión
+
+El plugin `plugins/lexdata_login` (en `/srv/roundcube/plugins/lexdata_login`) da a la pantalla de
+acceso el diseño de lexdata.com.ec: panel azul marino con foto y logotipo, acentos dorados,
+fuentes Playfair Display y Poppins (servidas desde el propio servidor) y favicon con el emblema.
+Para cambiarlo, editar `login.css` o `lexdata_login.php` y copiarlos al servidor.
