@@ -42,3 +42,13 @@ correo.lexdata.com.ec {
 mail.lexdata.com.ec, webmail.lexdata.com.ec {
 	redir https://correo.lexdata.com.ec permanent
 }
+
+# Plataforma de protección de datos (proyecto Lexdata-PDP), Next.js en el puerto 3001.
+protecciondedatos.lexdata.com.ec {
+	encode zstd gzip
+	request_body {
+		max_size 20MB
+	}
+	reverse_proxy 127.0.0.1:3001
+	header -Server
+}
