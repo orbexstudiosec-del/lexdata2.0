@@ -1,0 +1,312 @@
+/* Inicio de sesión con la identidad de lexdata.com.ec */
+
+@font-face {
+  font-family: "Playfair Display";
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/playfair-display-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/poppins-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/poppins-600.woff2") format("woff2");
+}
+
+body.task-login {
+  --lx-ink: #0b1628;
+  --lx-ink-2: #08090d;
+  --lx-gold: #c6a35d;
+  --lx-gold-soft: #e0c17b;
+  --lx-gold-deep: #85672a;
+  --lx-mist: #bdc3cc;
+  --lx-paper: #f4f5f7;
+  --lx-line: #e1e4ea;
+  --lx-stone: #575e6b;
+  font-family: "Poppins", system-ui, sans-serif;
+  color: var(--lx-ink);
+  background: #fff;
+}
+
+body.task-login #layout-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0;
+  background: #fff;
+  overflow: auto;
+  text-align: left;
+}
+
+/* --- Panel de marca ----------------------------------------------------- */
+
+body.task-login .lx-aside {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 3rem clamp(2rem, 5vw, 4.5rem);
+  color: #fff;
+  background: var(--lx-ink) url("hero.jpg") center / cover no-repeat;
+}
+body.task-login .lx-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, var(--lx-ink) 0%, rgb(11 22 40 / 0.88) 55%, rgb(11 22 40 / 0.55) 100%);
+}
+body.task-login .lx-aside::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--lx-gold-soft), var(--lx-gold), var(--lx-gold-deep));
+}
+body.task-login .lx-brand img {
+  display: block;
+  width: min(17rem, 70%);
+  height: auto;
+}
+body.task-login .lx-copy {
+  max-width: 32rem;
+}
+body.task-login .lx-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lx-gold);
+}
+body.task-login .lx-kicker span {
+  flex: none;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--lx-gold);
+}
+body.task-login .lx-headline {
+  margin: 1.25rem 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+body.task-login .lx-lead {
+  margin: 1.25rem 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: rgb(255 255 255 / 0.82);
+}
+body.task-login .lx-back {
+  align-self: flex-start;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lx-mist);
+  text-decoration: none;
+}
+body.task-login .lx-back:hover,
+body.task-login .lx-back:focus-visible {
+  color: var(--lx-gold);
+}
+
+/* --- Formulario --------------------------------------------------------- */
+
+body.task-login #login-form {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 25rem;
+  position: static;
+  top: auto;
+  margin: 0;
+  padding: 3rem 1.5rem;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+body.task-login .lx-eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lx-gold-deep);
+}
+body.task-login .lx-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--lx-ink);
+}
+body.task-login .lx-title::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  margin-top: 1.25rem;
+  background: var(--lx-gold);
+}
+body.task-login .lx-help {
+  margin: 1.25rem 0 2rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--lx-stone);
+}
+body.task-login .lx-help strong {
+  font-weight: 600;
+  color: var(--lx-ink);
+}
+
+body.task-login #login-form table,
+body.task-login #login-form tbody {
+  display: block;
+  width: 100%;
+}
+body.task-login #login-form tr.form-group {
+  display: block;
+  margin: 0 0 1rem;
+}
+body.task-login #login-form td.input {
+  display: flex;
+  width: 100%;
+  padding: 0;
+}
+body.task-login #login-form .input-group-text {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border: 1px solid var(--lx-line);
+  border-right: 0;
+  border-radius: 0;
+  background: var(--lx-paper);
+  color: var(--lx-gold-deep);
+}
+body.task-login #login-form .form-control {
+  height: 3.25rem;
+  border: 1px solid var(--lx-line);
+  border-radius: 0;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--lx-ink);
+  box-shadow: none;
+}
+body.task-login #login-form .form-control::placeholder {
+  color: #8a909b;
+}
+body.task-login #login-form .form-control:focus {
+  border-color: var(--lx-gold);
+  box-shadow: 0 0 0 3px rgb(198 163 93 / 0.25);
+}
+body.task-login #login-form .input-group:focus-within .input-group-text {
+  border-color: var(--lx-gold);
+}
+
+body.task-login #login-form .formbuttons {
+  margin: 1.75rem 0 0;
+  padding: 0;
+}
+body.task-login #rcmloginsubmit {
+  height: 3.25rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--lx-gold);
+  color: var(--lx-ink);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  box-shadow: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.task-login #rcmloginsubmit:hover,
+body.task-login #rcmloginsubmit:focus-visible {
+  background: var(--lx-ink);
+  color: #fff;
+}
+body.task-login #rcmloginsubmit:focus-visible {
+  outline: 3px solid var(--lx-gold);
+  outline-offset: 2px;
+}
+
+body.task-login #login-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--lx-line);
+  font-size: 0.8125rem;
+  color: var(--lx-stone);
+  text-align: left;
+}
+
+/* Mensajes (contraseña incorrecta, sesión caducada…) */
+body.task-login #messagestack div {
+  border-radius: 0;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* --- Móvil -------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  body.task-login #layout-content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+  }
+  body.task-login .lx-aside {
+    gap: 1.5rem;
+    padding: 1.75rem 1.5rem 2rem;
+  }
+  body.task-login .lx-aside::after {
+    top: auto;
+    left: 0;
+    width: auto;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lx-gold-soft), var(--lx-gold), var(--lx-gold-deep));
+  }
+  body.task-login .lx-brand img {
+    width: 12rem;
+  }
+  body.task-login .lx-headline {
+    margin-top: 0.75rem;
+    font-size: 1.75rem;
+  }
+  body.task-login .lx-kicker,
+  body.task-login .lx-lead,
+  body.task-login .lx-back {
+    display: none;
+  }
+  body.task-login #login-form {
+    align-self: start;
+    width: 100%;
+    max-width: none;
+    padding: 2.25rem 1.5rem 2.5rem;
+  }
+  body.task-login .lx-title {
+    font-size: 1.875rem;
+  }
+}
+
+/* Modo oscuro de Elastic: el formulario se mantiene claro, como la web. */
+html.dark-mode body.task-login,
+html.dark-mode body.task-login #layout-content {
+  background: #fff;
+}
