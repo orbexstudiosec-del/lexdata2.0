@@ -16,3 +16,23 @@ http://2.31.79.129 {
 	encode zstd gzip
 	reverse_proxy 127.0.0.1:3000
 }
+
+(roundcube) {
+	root * /srv/roundcube/public_html
+	encode zstd gzip
+	php_fastcgi unix//run/php/php8.5-fpm.sock
+	file_server
+	header {
+		X-Robots-Tag "noindex, nofollow"
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy same-origin
+		Strict-Transport-Security "max-age=63072000"
+		-Server
+	}
+}
+
+# Webmail (Roundcube) para el correo alojado en Namecheap.
+correo.lexdata.com.ec {
+	import roundcube
+}

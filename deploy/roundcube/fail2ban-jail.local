@@ -1,0 +1,8 @@
+[roundcube-auth]
+filter   = roundcube-lexdata
+enabled  = true
+port     = http,https
+logpath  = /srv/roundcube/logs/userlogins.log
+maxretry = 5
+findtime = 10m
+bantime  = 1h

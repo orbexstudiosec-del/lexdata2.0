@@ -25,6 +25,10 @@ ssh -i ~/.ssh/lexdata_vps_ed25519 root@2.31.79.129 lexdata-deploy
   de seguridad automáticas.
 - Node.js 24 (NodeSource), pnpm 11 y Caddy 2 (repositorio oficial).
 
+## Webmail
+
+Roundcube en `https://correo.lexdata.com.ec`. Ver [roundcube/README.md](roundcube/README.md).
+
 ## DNS (Cloudflare)
 
 - `lexdata.com.ec` y `www`: al VPS, con proxy (nube naranja). SSL en modo **Full (strict)**;
@@ -32,3 +36,4 @@ ssh -i ~/.ssh/lexdata_vps_ed25519 root@2.31.79.129 lexdata-deploy
 - `mail`, `webmail`, `cpanel`, `ftp`, `autodiscover` y demás subdominios del cPanel: siguen en el
   hosting de Namecheap (`66.29.153.183`) **sin proxy** (nube gris). El correo depende de ellos.
 - MX, SPF, DKIM y DMARC apuntan al correo de Namecheap; no cambiarlos.
+- `correo`: A al VPS (`2.31.79.129`) **sin proxy** (nube gris), para que fail2ban vea la IP real.
