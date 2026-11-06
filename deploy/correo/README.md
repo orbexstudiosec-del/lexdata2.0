@@ -31,14 +31,17 @@ Usuario: la dirección completa.
 
 ## Envío al exterior
 
-Hetzner bloquea el puerto 25 de salida en servidores nuevos. Hasta resolverlo, el correo hacia
-fuera se queda en cola (Postfix lo reintenta 5 días). Dos salidas:
+Hetzner bloquea el puerto 25 de salida en cuentas nuevas, así que el correo hacia fuera sale por
+**Resend** (`relayhost = [smtp.resend.com]:587`). La clave está solo en el servidor, en
+`/etc/postfix/sasl_passwd` (`[smtp.resend.com]:587 resend:re_...`); tras cambiarla, `postfix reload`.
+El dominio está verificado en Resend (región sa-east-1) con los registros DNS `resend._domainkey`,
+`send` y `rsend`. Plan gratis: 3.000 correos al mes y 100 al día; ver el historial en resend.com.
 
-1. **Servicio de envío** (Resend, Brevo…): en `/etc/postfix/main.cf` poner
-   `relayhost = [smtp.servicio.com]:587` y en `/etc/postfix/sasl_passwd`
-   `[smtp.servicio.com]:587 usuario:clave`; luego `postfix reload`. Añadir su `include:` al SPF.
-2. **Desbloqueo del puerto 25** pidiéndolo a Hetzner (Console → Limits). Antes, poner el DNS
-   inverso de `2.31.79.129` a `mail.lexdata.com.ec` (Console → servidor → Networking).
+El correo entrante no pasa por Resend: llega directo al servidor por el puerto 25.
+
+Para dejar de usar Resend: pedir a Hetzner el desbloqueo del puerto 25 (Console → Limits, cuando la
+cuenta lo permita; el DNS inverso de `2.31.79.129` ya es `mail.lexdata.com.ec`), vaciar
+`relayhost`, poner `smtp_tls_security_level = may` y recargar Postfix.
 
 Ver la cola: `postqueue -p`. Reintentar ya: `postqueue -f`.
 
@@ -49,7 +52,8 @@ Ver la cola: `postqueue -p`. Reintentar ya: `postqueue -f`.
 | A | `mail` | `2.31.79.129` |
 | A | `correo`, `webmail` | `2.31.79.129` |
 | MX | `@` | `mail.lexdata.com.ec` (prioridad 10) |
-| TXT | `@` | `v=spf1 mx ~all` (+ `include:` del servicio de envío) |
+| TXT | `@` | `v=spf1 mx ~all` |
+| TXT, CNAME | `resend._domainkey`, `send`, `rsend` | los que indica Resend para el dominio |
 | TXT | `lexdata._domainkey` | la clave pública de `/var/lib/rspamd/dkim/lexdata.com.ec.lexdata.txt` |
 | TXT | `_dmarc` | `v=DMARC1; p=none;` |
 
