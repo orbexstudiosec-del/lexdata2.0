@@ -3,15 +3,19 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
 const buttonBase =
-  "inline-block px-7 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300";
+  "inline-block rounded-[3px] px-7 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] transition duration-300";
+
+const goldButton =
+  "gold-metal text-ink hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(212_160_23/0.35)]";
+const outlineButton = "border-[1.5px] border-gold text-gold hover:bg-gold/12";
 
 const buttonVariants = {
-  gold: "bg-gold text-ink hover:bg-white",
-  /** Dorado sobre fondo claro: al pasar el cursor se vuelve azul marino. */
-  "gold-on-light": "bg-gold text-ink hover:bg-ink hover:text-white",
-  dark: "bg-ink text-white hover:bg-gold hover:text-ink",
-  /** Contorno blanco, para fondos oscuros. */
-  outline: "border border-white/70 text-white hover:bg-white hover:text-ink",
+  /** Oro con degradado: acción principal. */
+  gold: goldButton,
+  "gold-on-light": goldButton,
+  /** Contorno dorado: acción secundaria. */
+  dark: outlineButton,
+  outline: outlineButton,
 } as const;
 
 type ButtonLinkProps = {
@@ -44,10 +48,10 @@ export function ButtonLink({ href, variant = "gold-on-light", className = "", ch
 
 type SectionProps = ComponentProps<"section"> & { band?: boolean };
 
-/** `band` pinta la franja en gris claro para alternar con el blanco. */
+/** `band` aclara un poco el fondo para alternar secciones. */
 export function Section({ band = false, className = "", children, ...rest }: SectionProps) {
   return (
-    <section className={`py-16 sm:py-24 ${band ? "bg-paper" : "bg-white"} ${className}`} {...rest}>
+    <section className={`border-t border-line py-16 sm:py-24 ${band ? "bg-navy/45" : "bg-ink"} ${className}`} {...rest}>
       <div className="wrap">{children}</div>
     </section>
   );
@@ -68,7 +72,7 @@ export function SectionHeading({ label, title, lead, center = false, light = fal
       {label ? (
         <p
           className={`mb-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] ${
-            light ? "text-gold" : "text-gold-deep"
+            light ? "text-gold" : "text-gold"
           }`}
         >
           {label}
@@ -76,13 +80,13 @@ export function SectionHeading({ label, title, lead, center = false, light = fal
       ) : null}
       <h2
         className={`font-display text-3xl font-bold leading-tight sm:text-[2.5rem] ${
-          light ? "text-white" : "text-ink"
+          light ? "text-white" : "text-paper"
         }`}
       >
         {title}
       </h2>
       <span aria-hidden className={`mt-5 block h-[3px] w-14 bg-gold ${center ? "mx-auto" : ""}`} />
-      {lead ? <p className={`mt-5 ${light ? "text-mist" : "text-stone"}`}>{lead}</p> : null}
+      {lead ? <p className={`mt-5 ${light ? "text-mist" : "text-mist"}`}>{lead}</p> : null}
     </div>
   );
 }

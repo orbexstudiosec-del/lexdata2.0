@@ -14,23 +14,23 @@ export function Cta({
   action = "Solicitar consulta",
 }: CtaProps) {
   return (
-    <section className="gold-metal text-ink">
+    <section className="border-t border-line bg-navy">
       <div className="wrap grid gap-8 py-12 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">{title}</h2>
-          <p className="mt-2 max-w-2xl text-ink/80">{lead}</p>
+          <p className="mt-2 max-w-2xl text-mist">{lead}</p>
         </div>
         <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
           <a href={site.phoneHref} className="flex items-center gap-3">
-            <span className="grid size-12 place-items-center bg-ink text-gold">
+            <span className="icon-badge size-12">
               <Phone aria-hidden className="size-5" />
             </span>
             <span className="leading-tight">
-              <span className="block text-sm text-ink/75">Llámanos</span>
-              <span className="font-display text-2xl font-bold">{site.phoneDisplay}</span>
+              <span className="block text-sm text-stone">Llámanos</span>
+              <span className="font-display text-2xl font-bold text-paper">{site.phoneDisplay}</span>
             </span>
           </a>
-          <ButtonLink href="/contacto" variant="dark" className="hover:!bg-white">
+          <ButtonLink href="/contacto" variant="gold">
             {action}
           </ButtonLink>
         </div>

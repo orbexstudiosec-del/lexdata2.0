@@ -12,7 +12,7 @@ const noop = () => () => {};
 const readService = () => new URLSearchParams(window.location.search).get("servicio");
 
 const inputClass =
-  "mt-1.5 w-full border border-[#c9c6bd] bg-white px-3 py-2.5 text-ink focus:border-ink focus:outline-2 focus:outline-offset-0 focus:outline-gold aria-[invalid=true]:border-red-700";
+  "mt-1.5 w-full rounded-[3px] border border-[rgb(212_160_23/0.3)] bg-ink-2/60 px-3 py-2.5 text-paper placeholder:text-stone focus:border-gold focus:outline-2 focus:outline-offset-0 focus:outline-gold aria-[invalid=true]:border-red-700";
 const labelClass = "font-medium";
 const errorClass = "mt-1 text-sm text-red-700";
 
@@ -49,9 +49,9 @@ export function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div role="status" className="border-l-4 border-gold bg-white p-5">
+      <div role="status" className="border-l-4 border-gold bg-navy p-5">
         <h3 className="font-display text-xl font-semibold">Recibimos tu consulta</h3>
-        <p className="mt-1 text-stone">Te contactaremos por correo a la brevedad. Gracias por escribirnos.</p>
+        <p className="mt-1 text-mist">Te contactaremos por correo a la brevedad. Gracias por escribirnos.</p>
       </div>
     );
   }
@@ -59,7 +59,7 @@ export function ContactForm() {
   return (
     <form action={action} noValidate>
       {service ? (
-        <p className="mb-5 border-l-4 border-gold bg-white px-4 py-3">
+        <p className="mb-5 border-l-4 border-gold bg-navy px-4 py-3">
           Consulta sobre: <strong className="font-semibold">{service.title}</strong>
           <input type="hidden" name="servicio" value={service.slug} />
         </p>
@@ -129,7 +129,7 @@ export function ContactForm() {
       </div>
 
       <div className="mt-5">
-        <label className="flex items-start gap-2.5 text-[0.95rem] text-stone">
+        <label className="flex items-start gap-2.5 text-[0.95rem] text-mist">
           <input
             type="checkbox"
             name="acepta"
@@ -140,15 +140,15 @@ export function ContactForm() {
           />
           <span>
             He leído y acepto la{" "}
-            <Link href="/privacy-policy" className="link text-ink">
+            <Link href="/privacy-policy" className="link text-paper">
               política de privacidad
             </Link>
             , el{" "}
-            <Link href="/consentimiento-de-datos" className="link text-ink">
+            <Link href="/consentimiento-de-datos" className="link text-paper">
               consentimiento de datos personales
             </Link>{" "}
             y la{" "}
-            <Link href="/cookies" className="link text-ink">
+            <Link href="/cookies" className="link text-paper">
               política de cookies
             </Link>
             .
@@ -163,10 +163,10 @@ export function ContactForm() {
 
       <div aria-live="polite">
         {state.status === "error" && state.message ? (
-          <p className="mt-5 border-l-4 border-red-700 bg-white px-4 py-3 text-red-800">{state.message}</p>
+          <p className="mt-5 border-l-4 border-red-500 bg-navy px-4 py-3 text-red-300">{state.message}</p>
         ) : null}
         {state.status === "unavailable" ? (
-          <p className="mt-5 border-l-4 border-gold bg-white px-4 py-3">
+          <p className="mt-5 border-l-4 border-gold bg-navy px-4 py-3">
             {state.message} Puedes{" "}
             <a href={state.whatsappUrl} target="_blank" rel="noopener noreferrer" className="link font-medium">
               enviarla ahora por WhatsApp
@@ -179,7 +179,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-6 w-full bg-gold px-8 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-white disabled:opacity-60 sm:w-auto"
+        className="mt-6 gold-metal w-full rounded-[3px] px-8 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(212_160_23/0.35)] disabled:opacity-60 sm:w-auto"
       >
         {pending ? "Enviando…" : "Enviar consulta"}
       </button>

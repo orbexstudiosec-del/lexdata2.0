@@ -62,7 +62,7 @@ export function Header() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 bg-ink text-white shadow-[0_2px_12px_rgb(0_0_0/0.25)]">
+      <header className="sticky top-0 z-50 border-b border-line bg-ink/95 text-white backdrop-blur">
         <div className="wrap flex h-20 items-center justify-between gap-6 2xl:h-24">
           <Link href="/" onClick={close} aria-label={`${site.name}, inicio`} className="shrink-0">
             <Image
@@ -84,7 +84,7 @@ export function Header() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={`whitespace-nowrap text-[0.8125rem] font-medium uppercase tracking-[0.08em] transition-colors hover:text-gold ${
-                    active ? "text-gold" : "text-white"
+                    active ? "text-gold" : "text-fog"
                   }`}
                 >
                   {item.label}
@@ -98,14 +98,14 @@ export function Header() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden whitespace-nowrap bg-gold px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-white sm:block"
+              className="gold-metal hidden whitespace-nowrap rounded-[3px] px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(212_160_23/0.35)] sm:block"
             >
               Agendar cita
             </a>
             <Link
               href={site.portalUrl}
               onClick={close}
-              className="hidden items-center gap-2 whitespace-nowrap border border-gold px-4 py-[0.6875rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold hover:text-ink sm:flex"
+              className="hidden items-center gap-2 whitespace-nowrap rounded-[3px] border-[1.5px] border-gold px-4 py-[0.625rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold/12 sm:flex"
             >
               <UserRound aria-hidden className="size-4" />
               Mi portal
@@ -116,7 +116,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="menu-movil"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className="grid size-11 place-items-center border border-white/25 xl:hidden"
+              className="grid size-11 place-items-center rounded-[3px] border border-line xl:hidden"
             >
               {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
             </button>
@@ -144,14 +144,14 @@ export function Header() {
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gold px-4 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink"
+                className="gold-metal rounded-[3px] px-4 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink"
               >
                 Agendar cita por WhatsApp
               </a>
               <Link
                 href={site.portalUrl}
                 onClick={close}
-                className="flex items-center justify-center gap-2 border border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
+                className="flex items-center justify-center gap-2 rounded-[3px] border-[1.5px] border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
               >
                 <UserRound aria-hidden className="size-4" />
                 Mi portal · Acceso para clientes

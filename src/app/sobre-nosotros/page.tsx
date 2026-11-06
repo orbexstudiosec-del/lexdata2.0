@@ -23,7 +23,7 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-20">
-          <div className="grid gap-4 text-stone">
+          <div className="grid gap-4 text-mist">
             <SectionHeading label="Quiénes somos" title="Una firma ecuatoriana especializada" />
             <p className="mt-2">
               En Lex Data Corp® somos una firma ecuatoriana de asesoría y consultoría jurídica
@@ -63,9 +63,9 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <section className="bg-ink py-16 text-white sm:py-24">
+      <section className="border-t border-line bg-navy/45 py-16 text-white sm:py-24">
         <div className="wrap grid gap-6 md:grid-cols-3">
-          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+          <article className="card p-8">
             <Target aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra misión</h2>
             <p className="mt-3 text-mist">
@@ -75,7 +75,7 @@ export default function AboutPage() {
               nuestros clientes.
             </p>
           </article>
-          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+          <article className="card p-8">
             <Eye aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra visión</h2>
             <p className="mt-3 text-mist">
@@ -84,7 +84,7 @@ export default function AboutPage() {
               profesional, innovación y compromiso con la excelencia.
             </p>
           </article>
-          <article className="border-t-[3px] border-gold bg-ink-2 p-8">
+          <article className="card p-8">
             <Handshake aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestro compromiso</h2>
             <p className="mt-3 text-mist">
@@ -100,7 +100,7 @@ export default function AboutPage() {
           </article>
         </div>
         <div className="wrap mt-6">
-          <div className="flex items-center gap-5 border-l-[3px] border-gold bg-ink-2 p-6">
+          <div className="card flex items-center gap-5 p-6">
             <BookOpen aria-hidden className="size-9 shrink-0 text-gold" strokeWidth={1.25} />
             <p>
               <span className="block text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold">

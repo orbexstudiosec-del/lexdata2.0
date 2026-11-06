@@ -61,11 +61,13 @@ export default function HomePage() {
             <li key={slug}>
               <Link
                 href={`/servicios#${slug}`}
-                className="group flex h-full flex-col items-center border-b-[3px] border-transparent bg-white p-7 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)] transition-colors duration-300 hover:border-gold"
+                className="card group flex h-full flex-col items-center p-7 text-center transition-colors duration-300 hover:border-gold"
               >
-                <Icon aria-hidden className="size-11 text-gold" strokeWidth={1.1} />
+                <span className="icon-badge size-14">
+                  <Icon aria-hidden className="size-6" strokeWidth={1.6} />
+                </span>
                 <h3 className="mt-4 font-display text-lg font-bold leading-snug">{title}</h3>
-                <span className="mt-auto pt-4 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold-deep">
+                <span className="mt-auto pt-4 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold">
                   Ver más →
                 </span>
               </Link>
@@ -100,7 +102,7 @@ export default function HomePage() {
             <p className="mt-6 font-medium">
               Soluciones jurídicas especializadas para empresas y organizaciones.
             </p>
-            <p className="mt-4 text-stone">
+            <p className="mt-4 text-mist">
               Somos una firma ecuatoriana de asesoría y consultoría jurídica especializada en Derecho
               Empresarial, Derecho Digital, Protección de Datos Personales y Cumplimiento Normativo.
               Con sede en Ibarra, ofrecemos nuestros servicios a nivel nacional.
@@ -108,14 +110,14 @@ export default function HomePage() {
             <dl className="mt-6 grid gap-4 border-l-[3px] border-gold pl-5">
               <div>
                 <dt className="font-display text-lg font-bold">Nuestra misión</dt>
-                <dd className="mt-1 text-[0.95rem] text-stone">
+                <dd className="mt-1 text-[0.95rem] text-mist">
                   Brindar asesoría y consultoría jurídica especializada, mediante soluciones
                   preventivas, estratégicas y orientadas al cumplimiento normativo.
                 </dd>
               </div>
               <div>
                 <dt className="font-display text-lg font-bold">Nuestra visión</dt>
-                <dd className="mt-1 text-[0.95rem] text-stone">
+                <dd className="mt-1 text-[0.95rem] text-mist">
                   Consolidarnos como una firma referente en Ecuador en Derecho Empresarial, Derecho
                   Digital y Protección de Datos Personales.
                 </dd>
@@ -130,7 +132,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <section className="bg-ink py-14 text-white sm:py-16">
+      <section className="border-t border-line bg-navy py-14 text-white sm:py-16">
         <div className="wrap flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           <div>
             <p className="flex justify-center gap-1 text-gold md:justify-start" aria-hidden>

@@ -89,7 +89,7 @@ export default async function PostPage({ params }: Props) {
       <article className="wrap py-10 sm:py-14">
         <div className="max-w-[44rem]">
           {post.imageFit === "contain" ? (
-            <div className="relative mb-10 aspect-[16/9] border border-paper-line bg-paper">
+            <div className="relative mb-10 aspect-[16/9] border border-line bg-navy">
               <Image src={post.image} alt="" fill priority sizes="44rem" className="object-contain p-10" />
             </div>
           ) : (
@@ -101,17 +101,17 @@ export default async function PostPage({ params }: Props) {
               height={800}
               priority
               sizes="(min-width: 768px) 44rem, 100vw"
-              className="mb-10 h-auto w-full border border-paper-line"
+              className="mb-10 h-auto w-full border border-line"
             />
           )}
           <div className="prose-lex">{post.content.map(renderBlock)}</div>
         </div>
       </article>
 
-      <section className="border-t border-paper-line bg-paper py-12 sm:py-16">
+      <section className="border-t border-line bg-navy py-12 sm:py-16">
         <div className="wrap">
           <h2 className="font-display text-2xl font-semibold">Sigue leyendo</h2>
-          <div className="mt-6 border-b border-paper-line">
+          <div className="mt-6 border-b border-line">
             {related.map((p) => (
               <PostRow key={p.slug} post={p} />
             ))}

@@ -98,12 +98,12 @@ export default function DataProtectionPage() {
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <div>
             <SectionHeading label="Lex Data Corp® | Protección de Datos Personales" title="¿Cómo ayudamos a tu organización?" />
-            <p className="mt-6 text-stone">
+            <p className="mt-6 text-mist">
               En Lex Data Corp® brindamos asesoría jurídica especializada a empresas, instituciones y
               profesionales que necesitan adecuar sus actividades a la normativa ecuatoriana de
               protección de datos personales.
             </p>
-            <p className="mt-4 text-stone">
+            <p className="mt-4 text-mist">
               Nuestro enfoque se orienta a identificar riesgos, fortalecer los procesos de tratamiento
               de información y establecer medidas jurídicas, organizativas y técnicas adecuadas a las
               características de cada organización o actividad profesional.
@@ -124,16 +124,16 @@ export default function DataProtectionPage() {
         <SectionHeading center label="Servicios" title="Nuestros servicios especializados" />
         <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map(({ Icon, title, text }) => (
-            <li key={title} className="border-t-[3px] border-gold bg-white p-8 shadow-[0_6px_24px_-12px_rgb(0_0_0/0.22)]">
+            <li key={title} className="card p-8">
               <Icon aria-hidden className="size-11 text-gold" strokeWidth={1.1} />
               <h3 className="mt-5 font-display text-[1.375rem] font-bold leading-snug">{title}</h3>
-              <p className="mt-3 text-[0.95rem] text-stone">{text}</p>
+              <p className="mt-3 text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>
       </Section>
 
-      <section className="bg-ink py-16 text-white sm:py-24">
+      <section className="border-t border-line bg-navy/45 py-16 text-white sm:py-24">
         <div className="wrap max-w-4xl text-center">
           <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold">
             ¿Tu organización está preparada para una auditoría?
@@ -161,16 +161,16 @@ export default function DataProtectionPage() {
 
       <Section>
         <SectionHeading center label="Preguntas frecuentes" title="Preguntas frecuentes" />
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-paper-line border-y border-paper-line">
+        <div className="mx-auto mt-12 max-w-3xl divide-y divide-line border-y border-line">
           {faqs.map((f) => (
             <details key={f.q} className="group py-5">
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg font-bold [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg font-bold text-paper [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span aria-hidden className="mt-0.5 text-2xl leading-none text-gold transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-stone">{f.a}</p>
+              <p className="mt-3 text-mist">{f.a}</p>
             </details>
           ))}
         </div>
@@ -185,10 +185,10 @@ export default function DataProtectionPage() {
         />
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {platform.map(({ Icon, title, text }) => (
-            <li key={title} className="bg-white p-8 text-center shadow-[0_6px_24px_-12px_rgb(0_0_0/0.18)]">
+            <li key={title} className="card p-8 text-center">
               <Icon aria-hidden className="mx-auto size-9 text-gold" strokeWidth={1.25} />
               <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
-              <p className="mt-2 text-[0.95rem] text-stone">{text}</p>
+              <p className="mt-2 text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>

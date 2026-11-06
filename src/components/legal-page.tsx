@@ -16,7 +16,7 @@ export function LegalPage({ title, lead, updated, cta, children }: LegalPageProp
       <PageHero crumb={title} title={title} lead={lead} />
       <div className="wrap py-10 sm:py-14">
         <div className="prose-lex max-w-[44rem]">
-          {updated ? <p className="font-medium text-gold-deep">{updated}</p> : null}
+          {updated ? <p className="font-medium text-gold">{updated}</p> : null}
           {children}
         </div>
       </div>
