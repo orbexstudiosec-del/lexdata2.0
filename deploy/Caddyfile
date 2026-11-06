@@ -32,7 +32,13 @@ http://2.31.79.129 {
 	}
 }
 
-# Webmail (Roundcube) para el correo alojado en Namecheap.
+# Webmail (Roundcube) del servidor de correo de este VPS.
 correo.lexdata.com.ec {
 	import roundcube
+}
+
+# Nombre del servidor de correo (MX, IMAP, SMTP). Caddy obtiene su certificado,
+# que lexdata-mail-certs copia para Postfix y Dovecot. En el navegador lleva al webmail.
+mail.lexdata.com.ec, webmail.lexdata.com.ec {
+	redir https://correo.lexdata.com.ec permanent
 }

@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# Administra las cuentas de correo @lexdata.com.ec.
+#   lexdata-correo lista
+#   lexdata-correo crear  <usuario> [contraseña]   (sin contraseña genera una)
+#   lexdata-correo clave  <usuario> [contraseña]
+#   lexdata-correo borrar <usuario>                (los mensajes se conservan)
+#   lexdata-correo alias  <alias> <usuario>[,<usuario>...]
+#   lexdata-correo quitar-alias <alias>
+set -euo pipefail
+
+DOMAIN=lexdata.com.ec
+USERS=/etc/dovecot/users
+VIRTUAL=/etc/postfix/virtual
+VMAILBOX=/etc/postfix/vmailbox
+SENDERS=/etc/postfix/sender_login
+
+[[ $EUID -eq 0 ]] || { echo "Ejecutar como root." >&2; exit 1; }
+touch "$USERS" "$VIRTUAL"
+chown root:dovecot "$USERS"; chmod 640 "$USERS"
+
+full() { local a=${1,,}; [[ $a == *@* ]] || a="$a@$DOMAIN"; echo "$a"; }
+valid() { [[ $1 =~ ^[a-z0-9._-]+@${DOMAIN//./\\.}$ ]] || { echo "Dirección no válida: $1" >&2; exit 1; }; }
+exists() { grep -q "^$1:" "$USERS"; }
+genpass() { openssl rand -base64 24 | tr -dc 'A-Za-z0-9' | head -c 16; }
+hash() { printf '%s\n%s\n' "$1" "$1" | doveadm pw -s ARGON2ID; }
+
+# Regenera las tablas de Postfix a partir de las cuentas y los alias.
+rebuild() {
+  awk -F: 'NF { print $1, "ok" }' "$USERS" > "$VMAILBOX.tmp"
+  {
+    awk -F: 'NF { print $1, $1 }' "$USERS"
+    # Quien recibe un alias puede enviar con esa dirección.
+    awk '!/^#/ && NF >= 2 { a=$1; $1=""; gsub(/[ ,]+/, ",", $0); sub(/^,/, "", $0); print a, $0 }' "$VIRTUAL"
+  } > "$SENDERS.tmp"
+  mv "$VMAILBOX.tmp" "$VMAILBOX"; mv "$SENDERS.tmp" "$SENDERS"
+  postfix reload >/dev/null 2>&1 || true
+}
+
+setpass() {
+  local user=$1 pass=${2:-} shown=0
+  [[ -n $pass ]] || { pass=$(genpass); shown=1; }
+  (( ${#pass} >= 10 )) || { echo "La contraseña debe tener al menos 10 caracteres." >&2; exit 1; }
+  local h; h=$(hash "$pass")
+  if exists "$user"; then
+    awk -F: -v u="$user" -v h="$h" 'BEGIN{OFS=":"} $1==u {$2=h} {print}' "$USERS" > "$USERS.tmp"
+  else
+    { cat "$USERS"; echo "$user:$h::::::"; } > "$USERS.tmp"
+  fi
+  chown root:dovecot "$USERS.tmp"; chmod 640 "$USERS.tmp"; mv "$USERS.tmp" "$USERS"
+  (( shown )) && echo "Contraseña: $pass"
+  return 0
+}
+
+cmd=${1:-lista}
+case $cmd in
+  lista)
+    echo "Cuentas:"; cut -d: -f1 "$USERS" | sed 's/^/  /'
+    echo "Alias:"; grep -v '^#' "$VIRTUAL" | sed '/^$/d; s/^/  /' || true
+    ;;
+  crear)
+    u=$(full "${2:?Falta el usuario}"); valid "$u"
+    exists "$u" && { echo "Ya existe $u." >&2; exit 1; }
+    setpass "$u" "${3:-}"; rebuild
+    echo "Creada $u"
+    ;;
+  clave)
+    u=$(full "${2:?Falta el usuario}")
+    exists "$u" || { echo "No existe $u." >&2; exit 1; }
+    setpass "$u" "${3:-}"
+    echo "Contraseña cambiada para $u"
+    ;;
+  borrar)
+    u=$(full "${2:?Falta el usuario}")
+    exists "$u" || { echo "No existe $u." >&2; exit 1; }
+    grep -v "^$u:" "$USERS" > "$USERS.tmp" || true
+    chown root:dovecot "$USERS.tmp"; chmod 640 "$USERS.tmp"; mv "$USERS.tmp" "$USERS"
+    rebuild
+    echo "Borrada $u. Sus mensajes siguen en /var/vmail/$DOMAIN/${u%@*}"
+    ;;
+  alias)
+    a=$(full "${2:?Falta el alias}"); valid "$a"
+    exists "$a" && { echo "$a ya es una cuenta." >&2; exit 1; }
+    IFS=, read -ra dest <<< "${3:?Falta el destino}"
+    out=()
+    for d in "${dest[@]}"; do d=$(full "$d"); out+=("$d"); done
+    grep -v "^$a " "$VIRTUAL" > "$VIRTUAL.tmp" || true
+    echo "$a $(IFS=,; echo "${out[*]}")" >> "$VIRTUAL.tmp"; mv "$VIRTUAL.tmp" "$VIRTUAL"
+    rebuild
+    echo "Alias $a -> ${out[*]}"
+    ;;
+  quitar-alias)
+    a=$(full "${2:?Falta el alias}")
+    grep -v "^$a " "$VIRTUAL" > "$VIRTUAL.tmp" || true; mv "$VIRTUAL.tmp" "$VIRTUAL"
+    rebuild
+    echo "Quitado $a"
+    ;;
+  *)
+    sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+esac

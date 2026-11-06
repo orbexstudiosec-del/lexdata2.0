@@ -1,0 +1,6 @@
+[Unit]
+Description=Copia el certificado de mail.lexdata.com.ec para Postfix y Dovecot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/lexdata-mail-certs

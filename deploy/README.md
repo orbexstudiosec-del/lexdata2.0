@@ -25,15 +25,17 @@ ssh -i ~/.ssh/lexdata_vps_ed25519 root@2.31.79.129 lexdata-deploy
   de seguridad automáticas.
 - Node.js 24 (NodeSource), pnpm 11 y Caddy 2 (repositorio oficial).
 
-## Webmail
+## Correo
 
-Roundcube en `https://correo.lexdata.com.ec`. Ver [roundcube/README.md](roundcube/README.md).
+Servidor de correo propio (Postfix, Dovecot, Rspamd): ver [correo/README.md](correo/README.md).
+Webmail Roundcube en `https://correo.lexdata.com.ec`: ver [roundcube/README.md](roundcube/README.md).
+Firewall: además de 22/80/443, abiertos 25, 465, 587 y 993.
 
 ## DNS (Cloudflare)
 
 - `lexdata.com.ec` y `www`: al VPS, con proxy (nube naranja). SSL en modo **Full (strict)**;
   "Always Use HTTPS" apagado para que Caddy pueda renovar el certificado.
-- `mail`, `webmail`, `cpanel`, `ftp`, `autodiscover` y demás subdominios del cPanel: siguen en el
-  hosting de Namecheap (`66.29.153.183`) **sin proxy** (nube gris). El correo depende de ellos.
-- MX, SPF, DKIM y DMARC apuntan al correo de Namecheap; no cambiarlos.
-- `correo`: A al VPS (`2.31.79.129`) **sin proxy** (nube gris), para que fail2ban vea la IP real.
+- `mail`, `correo` y `webmail`: A al VPS (`2.31.79.129`) **sin proxy** (nube gris). El correo no
+  pasa por el proxy de Cloudflare, y fail2ban necesita ver la IP real.
+- MX, SPF, DKIM y DMARC: los del servidor propio, ver [correo/README.md](correo/README.md).
+- Los subdominios del antiguo cPanel de Namecheap (`cpanel`, `ftp`, `autodiscover`…) ya no sirven.

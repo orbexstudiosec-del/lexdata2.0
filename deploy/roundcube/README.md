@@ -1,7 +1,7 @@
 # Webmail (Roundcube)
 
 Roundcube 1.7.5 en `https://correo.lexdata.com.ec`, para leer y enviar el correo `@lexdata.com.ec`.
-El correo sigue alojado en Namecheap: Roundcube solo es la interfaz web y se conecta a ese servidor.
+Se conecta al servidor de correo del propio VPS (ver `../correo/README.md`).
 
 | Archivo | Ruta en el servidor |
 |---|---|
@@ -16,9 +16,9 @@ El bloque de Caddy está en `../Caddyfile`.
 
 - Código en `/srv/roundcube` (propiedad de root); solo `temp/` y `logs/` son escribibles por `www-data`.
 - Base de datos SQLite en `/var/lib/roundcube/roundcube.db`, fuera de la carpeta web.
-- Servidor de correo: `server352-5.web-hosting.com`, IMAP 993 y SMTP 465 con SSL. No se usa
-  `mail.lexdata.com.ec` porque el certificado del servidor es `*.web-hosting.com` y la conexión
-  no se podría verificar. Si Namecheap cambia la cuenta de servidor, hay que actualizar este nombre.
+- Se conecta en local: IMAP `localhost:143` y SMTP `localhost:10587`, un puerto que solo escucha
+  en el servidor y exige contraseña.
+- Plugin `managesieve` activo: cada usuario crea filtros y respuestas de ausencia en Ajustes.
 - Los usuarios pueden entrar con la dirección completa o solo con la parte antes de la `@`.
 - Sin instalador web (se borró `installer/`). Límite de 3 intentos de inicio de sesión por minuto.
 - fail2ban bloquea durante 1 hora la IP que falle 5 veces en 10 minutos. El filtro usa la IP real

@@ -1,0 +1,15 @@
+# /etc/fail2ban/jail.d/correo.local
+[postfix-sasl]
+enabled  = true
+backend  = systemd
+maxretry = 5
+findtime = 10m
+bantime  = 1h
+
+[dovecot]
+filter   = dovecot-lexdata
+enabled  = true
+backend  = systemd
+maxretry = 5
+findtime = 10m
+bantime  = 1h

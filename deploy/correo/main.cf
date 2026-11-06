@@ -1,0 +1,84 @@
+# /etc/postfix/main.cf — correo de @lexdata.com.ec
+
+compatibility_level = 3.10
+smtpd_banner = $myhostname ESMTP
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+
+myhostname = mail.lexdata.com.ec
+mydomain = lexdata.com.ec
+myorigin = $mydomain
+# El dominio es virtual: no va en mydestination.
+mydestination = localhost
+mynetworks = 127.0.0.0/8 [::1]/128
+inet_interfaces = all
+inet_protocols = ipv4
+recipient_delimiter = +
+message_size_limit = 26214400
+mailbox_size_limit = 0
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+
+# --- Buzones virtuales (entrega a Dovecot) ---------------------------------
+virtual_mailbox_domains = lexdata.com.ec
+virtual_mailbox_maps = texthash:/etc/postfix/vmailbox
+virtual_alias_maps = texthash:/etc/postfix/virtual
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+
+# --- Envío al exterior -----------------------------------------------------
+# Hetzner bloquea el puerto 25 de salida. Mientras no se desbloquee, el correo
+# sale por un servicio de envío. Credenciales en /etc/postfix/sasl_passwd.
+relayhost =
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = texthash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+smtp_tls_security_level = may
+smtp_tls_loglevel = 1
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+
+# --- TLS de entrada --------------------------------------------------------
+smtpd_tls_cert_file = /etc/ssl/lexdata-mail/fullchain.pem
+smtpd_tls_key_file = /etc/ssl/lexdata-mail/privkey.pem
+smtpd_tls_security_level = may
+smtpd_tls_auth_only = yes
+smtpd_tls_loglevel = 1
+smtpd_tls_mandatory_protocols = >=TLSv1.2
+smtpd_tls_protocols = >=TLSv1.2
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+
+# --- Autenticación (contraseñas de Dovecot) --------------------------------
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = no
+smtpd_sasl_security_options = noanonymous
+# Cada usuario solo puede enviar con su propia dirección o sus alias.
+smtpd_sender_login_maps = texthash:/etc/postfix/sender_login
+
+# --- Reglas para el correo que llega por el puerto 25 ----------------------
+smtpd_helo_required = yes
+disable_vrfy_command = yes
+strict_rfc821_envelopes = yes
+smtpd_helo_restrictions =
+    permit_mynetworks,
+    reject_invalid_helo_hostname,
+    reject_non_fqdn_helo_hostname
+smtpd_sender_restrictions =
+    reject_non_fqdn_sender,
+    reject_unknown_sender_domain
+smtpd_recipient_restrictions =
+    permit_mynetworks,
+    reject_non_fqdn_recipient,
+    reject_unknown_recipient_domain,
+    reject_unauth_destination
+smtpd_relay_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unauth_destination
+
+# --- Antispam y firma DKIM (Rspamd) ----------------------------------------
+smtpd_milters = inet:127.0.0.1:11332
+non_smtpd_milters = $smtpd_milters
+milter_default_action = accept
+milter_protocol = 6

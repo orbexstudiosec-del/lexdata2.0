@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Copia el certificado de mail.lexdata.com.ec que obtiene Caddy para que lo usen
+# Postfix y Dovecot, y los recarga si cambió. Lo ejecuta a diario un timer de systemd.
+set -euo pipefail
+
+HOST=mail.lexdata.com.ec
+SRC_ROOT=/var/lib/caddy/.local/share/caddy/certificates
+DEST=/etc/ssl/lexdata-mail
+
+crt=$(find "$SRC_ROOT" -path "*/$HOST/$HOST.crt" -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -1 | cut -d' ' -f2-)
+if [[ -z $crt ]]; then
+  echo "Caddy aún no tiene certificado para $HOST" >&2
+  exit 0
+fi
+key=${crt%.crt}.key
+
+install -d -m 750 -o root -g root "$DEST"
+if cmp -s "$crt" "$DEST/fullchain.pem" && cmp -s "$key" "$DEST/privkey.pem"; then
+  exit 0
+fi
+install -m 644 "$crt" "$DEST/fullchain.pem"
+install -m 600 "$key" "$DEST/privkey.pem"
+systemctl reload postfix dovecot
+echo "Certificado de $HOST actualizado"
