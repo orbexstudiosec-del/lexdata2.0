@@ -188,7 +188,7 @@ export default function DataProtectionPage() {
             <li key={title} className="card p-8 text-center">
               <Icon aria-hidden className="mx-auto size-9 text-gold" strokeWidth={1.25} />
               <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
-              <p className="mt-2 text-justify hyphens-auto [text-align-last:center] text-[0.95rem] text-mist">{text}</p>
+              <p className="mt-2 text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>
