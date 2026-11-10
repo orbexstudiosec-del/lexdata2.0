@@ -127,7 +127,7 @@ export default function DataProtectionPage() {
             <li key={title} className="card p-8">
               <Icon aria-hidden className="size-11 text-gold" strokeWidth={1.1} />
               <h3 className="mt-5 font-display text-[1.375rem] font-bold leading-snug">{title}</h3>
-              <p className="mt-3 text-[0.95rem] text-mist">{text}</p>
+              <p className="mt-3 text-justify hyphens-auto text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>
@@ -141,13 +141,13 @@ export default function DataProtectionPage() {
           <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.5rem]">
             ¿Podrías demostrar el cumplimiento de la Ley de Protección de Datos Personales?
           </h2>
-          <p className="mt-6 text-mist">
+          <p className="mt-6 text-justify hyphens-auto [text-align-last:center] text-mist">
             Cumplir con la normativa no consiste únicamente en disponer de políticas de privacidad o
             formularios de consentimiento. Las empresas, instituciones y profesionales deben aplicar
             medidas jurídicas, organizativas y técnicas adecuadas a sus actividades y riesgos, y estar
             en condiciones de demostrar su cumplimiento.
           </p>
-          <p className="mt-4 font-medium">
+          <p className="mt-4 text-justify hyphens-auto [text-align-last:center] font-medium">
             Identifica las principales brechas de cumplimiento antes de que se conviertan en un
             problema para tu organización.
           </p>
@@ -170,7 +170,7 @@ export default function DataProtectionPage() {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-mist">{f.a}</p>
+              <p className="mt-3 text-justify hyphens-auto text-mist">{f.a}</p>
             </details>
           ))}
         </div>
@@ -188,7 +188,7 @@ export default function DataProtectionPage() {
             <li key={title} className="card p-8 text-center">
               <Icon aria-hidden className="mx-auto size-9 text-gold" strokeWidth={1.25} />
               <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
-              <p className="mt-2 text-[0.95rem] text-mist">{text}</p>
+              <p className="mt-2 text-justify hyphens-auto [text-align-last:center] text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>
