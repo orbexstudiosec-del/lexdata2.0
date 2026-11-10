@@ -63,7 +63,7 @@ export function Header() {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-line bg-ink/95 text-white backdrop-blur">
-        <div className="wrap flex h-20 items-center justify-between gap-6 2xl:h-24">
+        <div className="wrap flex h-20 items-center justify-between gap-6 xl:gap-4 2xl:h-24 2xl:gap-6">
           <Link href="/" onClick={close} aria-label={`${site.name}, inicio`} className="shrink-0">
             <Image
               src="/img/logo.png"
@@ -75,7 +75,7 @@ export function Header() {
             />
           </Link>
 
-          <nav aria-label="Principal" className="hidden items-center gap-6 xl:flex 2xl:gap-9">
+          <nav aria-label="Principal" className="hidden items-center gap-6 xl:flex xl:gap-4 2xl:gap-9">
             {nav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
@@ -83,7 +83,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`whitespace-nowrap text-[0.8125rem] font-medium uppercase tracking-[0.08em] transition-colors hover:text-gold ${
+                  className={`whitespace-nowrap text-[0.8125rem] font-medium uppercase tracking-[0.08em] transition-colors xl:tracking-[0.04em] 2xl:tracking-[0.08em] hover:text-gold ${
                     active ? "text-gold" : "text-fog"
                   }`}
                 >
@@ -98,17 +98,17 @@ export function Header() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="gold-metal hidden whitespace-nowrap rounded-[3px] px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink transition hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(212_160_23/0.35)] sm:block"
+              className="gold-metal hidden whitespace-nowrap rounded-[3px] px-5 py-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink xl:px-4 xl:tracking-[0.05em] 2xl:px-5 2xl:tracking-[0.08em] transition hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(212_160_23/0.35)] sm:block"
             >
               Agendar cita
             </a>
             <Link
               href={site.portalUrl}
               onClick={close}
-              className="hidden items-center gap-2 whitespace-nowrap rounded-[3px] border-[1.5px] border-gold px-4 py-[0.625rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold/12 sm:flex"
+              className="hidden items-center gap-2 whitespace-nowrap rounded-[3px] border-[1.5px] border-gold px-4 py-[0.625rem] text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold transition-colors hover:bg-gold/12 sm:flex xl:px-3 xl:tracking-[0.05em] 2xl:px-4 2xl:tracking-[0.08em]"
             >
-              <UserRound aria-hidden className="size-4" />
-              Mi portal
+              <UserRound aria-hidden className="size-4 xl:hidden 2xl:block" />
+              Protección de datos
             </Link>
             <button
               type="button"
@@ -154,7 +154,7 @@ export function Header() {
                 className="flex items-center justify-center gap-2 rounded-[3px] border-[1.5px] border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
               >
                 <UserRound aria-hidden className="size-4" />
-                Mi portal · Acceso para clientes
+                Protección de datos · Acceso para clientes
               </Link>
               <a href={site.phoneHref}>Tel. {site.phoneDisplay}</a>
               <p>
