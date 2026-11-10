@@ -13,7 +13,7 @@ export const site = {
   email: "lexdatacorp@gmail.com",
   privacyEmail: "pdatos@lexdata.com.ec",
   /** Acceso para clientes. Aún sin destino: poner aquí la URL del portal cuando exista. */
-  portalUrl: "#",
+  portalUrl: "https://protecciondedatos.lexdata.com.ec/",
   address: {
     street: "Sucre 4-25 y Grijalva",
     city: "Ibarra",
