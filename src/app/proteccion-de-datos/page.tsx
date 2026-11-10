@@ -98,12 +98,12 @@ export default function DataProtectionPage() {
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <div>
             <SectionHeading label="Lex Data Corp® | Protección de Datos Personales" title="¿Cómo ayudamos a tu organización?" />
-            <p className="mt-6 text-mist">
+            <p className="mt-6 text-justify hyphens-auto text-mist">
               En Lex Data Corp® brindamos asesoría jurídica especializada a empresas, instituciones y
               profesionales que necesitan adecuar sus actividades a la normativa ecuatoriana de
               protección de datos personales.
             </p>
-            <p className="mt-4 text-mist">
+            <p className="mt-4 text-justify hyphens-auto text-mist">
               Nuestro enfoque se orienta a identificar riesgos, fortalecer los procesos de tratamiento
               de información y establecer medidas jurídicas, organizativas y técnicas adecuadas a las
               características de cada organización o actividad profesional.
