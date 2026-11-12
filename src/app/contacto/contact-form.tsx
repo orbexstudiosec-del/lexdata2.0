@@ -143,10 +143,7 @@ export function ContactForm() {
             <Link href="/privacy-policy" className="link text-paper">
               política de privacidad
             </Link>
-            , el{" "}
-            <Link href="/consentimiento-de-datos" className="link text-paper">
-              consentimiento de datos personales
-            </Link>{" "}
+{" "}
             y la{" "}
             <Link href="/cookies" className="link text-paper">
               política de cookies

@@ -26,11 +26,15 @@ const legacyPosts: Record<string, string> = {
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
-    return Object.entries(legacyPosts).map(([from, to]) => ({
-      source: `/${from}`,
-      destination: `/noticias/${to}`,
-      permanent: true,
-    }));
+    return [
+      ...Object.entries(legacyPosts).map(([from, to]) => ({
+        source: `/${from}`,
+        destination: `/noticias/${to}`,
+        permanent: true,
+      })),
+      // Página retirada: los enlaces antiguos llevan a la política de privacidad.
+      { source: "/consentimiento-de-datos", destination: "/privacy-policy", permanent: true },
+    ];
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

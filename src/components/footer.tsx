@@ -6,7 +6,6 @@ import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon } from "./icons";
 const legal = [
   { href: "/privacy-policy", label: "Política de privacidad" },
   { href: "/cookies", label: "Política de cookies" },
-  { href: "/consentimiento-de-datos", label: "Consentimiento de datos" },
 ];
 
 const social = [

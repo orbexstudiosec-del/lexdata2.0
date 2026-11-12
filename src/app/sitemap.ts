@@ -11,7 +11,6 @@ const pages = [
   { path: "/contacto", priority: 0.8 },
   { path: "/privacy-policy", priority: 0.2 },
   { path: "/cookies", priority: 0.2 },
-  { path: "/consentimiento-de-datos", priority: 0.2 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

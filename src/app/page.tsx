@@ -5,10 +5,10 @@ import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { posts } from "@/lib/posts";
+import { google, resenas } from "@/lib/resenas";
 import { services } from "@/lib/services";
 import { certifications, training, whatsappUrl } from "@/lib/site";
 
-const reviewsUrl = "https://www.google.com/maps/search/?api=1&query=Lex+Data+Corp+Ibarra+Ecuador";
 
 export default function HomePage() {
   return (
@@ -132,25 +132,53 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <section className="border-t border-line bg-navy py-14 text-white sm:py-16">
-        <div className="wrap flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
-          <div>
-            <p className="flex justify-center gap-1 text-gold md:justify-start" aria-hidden>
-              {Array.from({ length: 5 }, (_, i) => (
-                <Star key={i} className="size-5 fill-current" />
-              ))}
-            </p>
-            <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">
-              La confianza de nuestros clientes nos respalda
-            </h2>
-            <p className="mt-2 text-mist">
-              Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir
-              asesoría jurídica especializada.
-            </p>
+      <section id="resenas" className="scroll-mt-24 border-t border-line bg-navy py-16 text-white sm:py-20">
+        <div className="wrap">
+          <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+            <div>
+              <p className="flex justify-center gap-1 text-gold md:justify-start" aria-hidden>
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star key={i} className="size-5 fill-current" />
+                ))}
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">La confianza de nuestros clientes nos respalda</h2>
+              <p className="mt-2 text-mist">
+                Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap justify-center gap-3">
+              <ButtonLink href={google.escribirResena} variant="gold">
+                Dejar una reseña en Google
+              </ButtonLink>
+              <ButtonLink href={google.verResenas} variant="outline">
+                Ver todas las reseñas
+              </ButtonLink>
+            </div>
           </div>
-          <ButtonLink href={reviewsUrl} variant="gold" className="shrink-0">
-            Ver reseñas en Google
-          </ButtonLink>
+
+          {resenas.length ? (
+            <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {resenas.map((r) => (
+                <li key={r.autor + r.texto.slice(0, 20)} className="card flex flex-col p-7">
+                  <p className="flex gap-0.5 text-gold" aria-label={`${r.estrellas} de 5 estrellas`}>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Star key={i} aria-hidden className={`size-4 ${i < r.estrellas ? "fill-current" : "opacity-30"}`} />
+                    ))}
+                  </p>
+                  <blockquote className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-mist">“{r.texto}”</blockquote>
+                  <p className="mt-5 flex items-center gap-3 border-t border-line pt-4">
+                    <span aria-hidden className="icon-badge size-10 font-display text-sm font-bold">
+                      {r.autor.split(/s+/).slice(0, 2).map((p) => p[0]).join("").toUpperCase()}
+                    </span>
+                    <span className="leading-tight">
+                      <span className="block font-semibold text-paper">{r.autor}</span>
+                      <span className="text-xs text-stone">Reseña de Google{r.cuando ? ` · ${r.cuando}` : ""}</span>
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </section>
 
