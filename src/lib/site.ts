@@ -10,7 +10,7 @@ export const site = {
   phoneIntl: "+593 99 550 2096",
   phoneHref: "tel:+593995502096",
   whatsapp: "593995502096",
-  email: "lexdatacorp@gmail.com",
+  email: "info@lexdata.com.ec",
   privacyEmail: "pdatos@lexdata.com.ec",
   /** Acceso para clientes. Aún sin destino: poner aquí la URL del portal cuando exista. */
   portalUrl: "https://protecciondedatos.lexdata.com.ec/",
@@ -21,8 +21,7 @@ export const site = {
     country: "Ecuador",
   },
   hours: [
-    { days: "Lunes a viernes", time: "9:00 – 18:00" },
-    { days: "Sábados", time: "9:00 – 13:00" },
+    { days: "Lunes a viernes", time: "8:00 – 17:00" },
   ],
   social: {
     linkedin: "https://www.linkedin.com/company/108960065/",
