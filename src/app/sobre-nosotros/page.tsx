@@ -23,7 +23,7 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-20">
-          <div className="grid gap-4 text-mist [&>p]:text-justify [&>p]:hyphens-auto">
+          <div className="grid gap-4 text-mist [&>p]:text-justify">
             <SectionHeading label="Quiénes somos" title="Una firma ecuatoriana especializada" />
             <p className="mt-2">
               En Lex Data Corp® somos una firma ecuatoriana de asesoría y consultoría jurídica

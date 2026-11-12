@@ -98,12 +98,12 @@ export default function DataProtectionPage() {
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <div>
             <SectionHeading label="Lex Data Corp® | Protección de Datos Personales" title="¿Cómo ayudamos a tu organización?" />
-            <p className="mt-6 text-justify hyphens-auto text-mist">
+            <p className="mt-6 text-justify text-mist">
               En Lex Data Corp® brindamos asesoría jurídica especializada a empresas, instituciones y
               profesionales que necesitan adecuar sus actividades a la normativa ecuatoriana de
               protección de datos personales.
             </p>
-            <p className="mt-4 text-justify hyphens-auto text-mist">
+            <p className="mt-4 text-justify text-mist">
               Nuestro enfoque se orienta a identificar riesgos, fortalecer los procesos de tratamiento
               de información y establecer medidas jurídicas, organizativas y técnicas adecuadas a las
               características de cada organización o actividad profesional.
@@ -127,7 +127,7 @@ export default function DataProtectionPage() {
             <li key={title} className="card p-8">
               <Icon aria-hidden className="size-11 text-gold" strokeWidth={1.1} />
               <h3 className="mt-5 font-display text-[1.375rem] font-bold leading-snug">{title}</h3>
-              <p className="mt-3 text-justify hyphens-auto text-[0.95rem] text-mist">{text}</p>
+              <p className="mt-3 text-justify text-[0.95rem] text-mist">{text}</p>
             </li>
           ))}
         </ul>
@@ -141,13 +141,13 @@ export default function DataProtectionPage() {
           <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.5rem]">
             ¿Podrías demostrar el cumplimiento de la Ley de Protección de Datos Personales?
           </h2>
-          <p className="mt-6 text-justify hyphens-auto [text-align-last:center] text-mist">
+          <p className="mt-6 text-justify [text-align-last:center] text-mist">
             Cumplir con la normativa no consiste únicamente en disponer de políticas de privacidad o
             formularios de consentimiento. Las empresas, instituciones y profesionales deben aplicar
             medidas jurídicas, organizativas y técnicas adecuadas a sus actividades y riesgos, y estar
             en condiciones de demostrar su cumplimiento.
           </p>
-          <p className="mt-4 text-justify hyphens-auto [text-align-last:center] font-medium">
+          <p className="mt-4 text-justify [text-align-last:center] font-medium">
             Identifica las principales brechas de cumplimiento antes de que se conviertan en un
             problema para tu organización.
           </p>
@@ -170,7 +170,7 @@ export default function DataProtectionPage() {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-justify hyphens-auto text-mist">{f.a}</p>
+              <p className="mt-3 text-justify text-mist">{f.a}</p>
             </details>
           ))}
         </div>
