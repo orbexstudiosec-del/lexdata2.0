@@ -176,3 +176,15 @@
   color: var(--color-paper);
   font-weight: 600;
 }
+
+/* Entrada suave de cada reseña del carrusel. */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

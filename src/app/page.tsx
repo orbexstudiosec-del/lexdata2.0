@@ -6,6 +6,7 @@ import { PostCard } from "@/components/post-card";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { posts } from "@/lib/posts";
 import { google, resenas } from "@/lib/resenas";
+import { CarruselResenas } from "@/components/carrusel-resenas";
 import { services } from "@/lib/services";
 import { certifications, training, whatsappUrl } from "@/lib/site";
 
@@ -157,27 +158,9 @@ export default function HomePage() {
           </div>
 
           {resenas.length ? (
-            <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {resenas.map((r) => (
-                <li key={r.autor + r.texto.slice(0, 20)} className="card flex flex-col p-7">
-                  <p className="flex gap-0.5 text-gold" aria-label={`${r.estrellas} de 5 estrellas`}>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} aria-hidden className={`size-4 ${i < r.estrellas ? "fill-current" : "opacity-30"}`} />
-                    ))}
-                  </p>
-                  <blockquote className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-mist">“{r.texto}”</blockquote>
-                  <p className="mt-5 flex items-center gap-3 border-t border-line pt-4">
-                    <span aria-hidden className="icon-badge size-10 font-display text-sm font-bold">
-                      {r.autor.split(/s+/).slice(0, 2).map((p) => p[0]).join("").toUpperCase()}
-                    </span>
-                    <span className="leading-tight">
-                      <span className="block font-semibold text-paper">{r.autor}</span>
-                      <span className="text-xs text-stone">Reseña de Google{r.cuando ? ` · ${r.cuando}` : ""}</span>
-                    </span>
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-10">
+              <CarruselResenas resenas={resenas} />
+            </div>
           ) : null}
         </div>
       </section>
