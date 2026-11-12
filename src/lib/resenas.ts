@@ -23,4 +23,21 @@ export type Resena = {
   texto: string;
 };
 
-export const resenas: Resena[] = [];
+export const resenas: Resena[] = [
+  {
+    autor: "David Miranda",
+    estrellas: 5,
+    texto:
+      "Excelente servicio y respaldo profesional. Su asesoría en protección de datos y derecho digital es clave para garantizar la seguridad jurídica de cualquier empresa en el entorno actual. Muy recomendados por su rigor y claridad.",
+  },
+  {
+    autor: "Javier Nole",
+    estrellas: 5,
+    texto: "Excelente atención y asesoría muy profesional en derecho empresarial y digital. Totalmente recomendados.",
+  },
+  {
+    autor: "Solange Ayala",
+    estrellas: 5,
+    texto: "Me gustó la atención personalizada y las soluciones empresariales que me dieron, recomendado",
+  },
+];
