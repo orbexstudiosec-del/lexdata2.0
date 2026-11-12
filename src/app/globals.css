@@ -118,6 +118,7 @@
 /* Texto largo: artículos y páginas legales. */
 .prose-lex {
   font-size: 1.0625rem;
+  text-align: justify;
   line-height: 1.75;
 }
 

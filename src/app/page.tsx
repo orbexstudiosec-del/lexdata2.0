@@ -33,7 +33,7 @@ export default function HomePage() {
             <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.1] sm:text-[3.5rem] 2xl:text-[4.5rem]">
               Derecho Empresarial, Digital y Protección de Datos
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-white/85 2xl:text-xl">
+            <p className="text-justify mt-6 max-w-2xl text-lg text-white/85 2xl:text-xl">
               Asesoramos a empresas y organizaciones en asuntos societarios, constitución de
               compañías, contratos, protección de datos personales y cumplimiento normativo.
               Soluciones jurídicas especializadas con atención en todo el Ecuador.
@@ -103,7 +103,7 @@ export default function HomePage() {
             <p className="mt-6 font-medium">
               Soluciones jurídicas especializadas para empresas y organizaciones.
             </p>
-            <p className="mt-4 text-mist">
+            <p className="text-justify mt-4 text-mist">
               Somos una firma ecuatoriana de asesoría y consultoría jurídica especializada en Derecho
               Empresarial, Derecho Digital, Protección de Datos Personales y Cumplimiento Normativo.
               Con sede en Ibarra, ofrecemos nuestros servicios a nivel nacional.
@@ -111,14 +111,14 @@ export default function HomePage() {
             <dl className="mt-6 grid gap-4 border-l-[3px] border-gold pl-5">
               <div>
                 <dt className="font-display text-lg font-bold">Nuestra misión</dt>
-                <dd className="mt-1 text-[0.95rem] text-mist">
+                <dd className="text-justify mt-1 text-[0.95rem] text-mist">
                   Brindar asesoría y consultoría jurídica especializada, mediante soluciones
                   preventivas, estratégicas y orientadas al cumplimiento normativo.
                 </dd>
               </div>
               <div>
                 <dt className="font-display text-lg font-bold">Nuestra visión</dt>
-                <dd className="mt-1 text-[0.95rem] text-mist">
+                <dd className="text-justify mt-1 text-[0.95rem] text-mist">
                   Consolidarnos como una firma referente en Ecuador en Derecho Empresarial, Derecho
                   Digital y Protección de Datos Personales.
                 </dd>
@@ -142,7 +142,7 @@ export default function HomePage() {
               Reseñas de Google
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.5rem]">La confianza de nuestros clientes nos respalda</h2>
-            <p className="mt-4 text-mist">
+            <p className="mt-4 text-mist lg:text-justify">
               Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada.
             </p>
             <div className="mt-6 inline-flex items-center gap-4 rounded-lg border border-line bg-ink/40 px-5 py-3">

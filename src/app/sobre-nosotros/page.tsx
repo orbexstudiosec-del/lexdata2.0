@@ -68,7 +68,7 @@ export default function AboutPage() {
           <article className="card p-8">
             <Target aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra misión</h2>
-            <p className="mt-3 text-mist">
+            <p className="text-justify mt-3 text-mist">
               Brindar asesoría y consultoría jurídica especializada, mediante soluciones preventivas,
               estratégicas y orientadas al cumplimiento normativo, contribuyendo a la seguridad
               jurídica, la gestión responsable de la información y el desarrollo sostenible de
@@ -78,7 +78,7 @@ export default function AboutPage() {
           <article className="card p-8">
             <Eye aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestra visión</h2>
-            <p className="mt-3 text-mist">
+            <p className="text-justify mt-3 text-mist">
               Consolidarnos como una firma referente en Ecuador en Derecho Empresarial, Derecho
               Digital y Protección de Datos Personales, reconocida por su especialización, rigor
               profesional, innovación y compromiso con la excelencia.
@@ -87,13 +87,13 @@ export default function AboutPage() {
           <article className="card p-8">
             <Handshake aria-hidden className="size-9 text-gold" strokeWidth={1.25} />
             <h2 className="mt-4 font-display text-2xl font-bold text-gold">Nuestro compromiso</h2>
-            <p className="mt-3 text-mist">
+            <p className="text-justify mt-3 text-mist">
               Entendemos que una asesoría jurídica efectiva va más allá de la elaboración de
               documentos. Nuestro enfoque se fundamenta en el análisis de riesgos, la prevención de
               contingencias legales, la implementación de mecanismos de cumplimiento y el
               acompañamiento profesional continuo.
             </p>
-            <p className="mt-3 text-mist">
+            <p className="text-justify mt-3 text-mist">
               Trabajamos para que nuestros clientes no solo conozcan sus obligaciones legales, sino
               que cuenten con herramientas y soluciones para cumplirlas de manera efectiva.
             </p>
