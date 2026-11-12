@@ -133,21 +133,30 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <section id="resenas" className="scroll-mt-24 border-t border-line bg-navy py-16 text-white sm:py-20">
-        <div className="wrap">
-          <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
-            <div>
-              <p className="flex justify-center gap-1 text-gold md:justify-start" aria-hidden>
+      <section id="resenas" className="relative isolate scroll-mt-24 overflow-hidden border-t border-line bg-navy py-16 text-white sm:py-24">
+        <div aria-hidden className="absolute -left-40 top-1/2 -z-10 size-[28rem] -translate-y-1/2 rounded-full bg-gold/[0.07] blur-3xl" />
+        <div className="wrap grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14 2xl:gap-20">
+          <div className="text-center lg:text-left">
+            <p className="flex items-center justify-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold lg:justify-start">
+              <span aria-hidden className="h-px w-10 bg-gold" />
+              Reseñas de Google
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.5rem]">La confianza de nuestros clientes nos respalda</h2>
+            <p className="mt-4 text-mist">
+              Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada.
+            </p>
+            <div className="mt-6 inline-flex items-center gap-4 rounded-lg border border-line bg-ink/40 px-5 py-3">
+              <p className="flex gap-0.5 text-gold" aria-hidden>
                 {Array.from({ length: 5 }, (_, i) => (
                   <Star key={i} className="size-5 fill-current" />
                 ))}
               </p>
-              <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">La confianza de nuestros clientes nos respalda</h2>
-              <p className="mt-2 text-mist">
-                Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada.
+              <p className="text-left text-sm leading-tight">
+                <span className="block font-semibold text-paper">Clientes satisfechos</span>
+                <span className="text-xs text-stone">Opiniones publicadas en Google</span>
               </p>
             </div>
-            <div className="flex shrink-0 flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <ButtonLink href={google.escribirResena} variant="gold">
                 Dejar una reseña en Google
               </ButtonLink>
@@ -156,12 +165,7 @@ export default function HomePage() {
               </ButtonLink>
             </div>
           </div>
-
-          {resenas.length ? (
-            <div className="mt-10">
-              <CarruselResenas resenas={resenas} />
-            </div>
-          ) : null}
+          <CarruselResenas resenas={resenas} />
         </div>
       </section>
 

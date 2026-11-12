@@ -188,3 +188,13 @@
     transform: none;
   }
 }
+
+/* Barra de tiempo del carrusel de reseñas. */
+@keyframes progreso {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
