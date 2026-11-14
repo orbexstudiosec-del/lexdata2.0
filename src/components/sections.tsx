@@ -1,8 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { services } from "@/lib/services";
-import { certifications, training } from "@/lib/site";
+import { certifications, training, whatsappUrl } from "@/lib/site";
 import { SectionHeading } from "./ui";
 
 /** Las cinco áreas de práctica con sus servicios. */
@@ -28,12 +27,14 @@ export function ServiceGrid({ linkToContact = false }: { linkToContact?: boolean
             ))}
           </ul>
           {linkToContact ? (
-            <Link
-              href={`/contacto?servicio=${slug}`}
+            <a
+              href={whatsappUrl(`Hola Lex Data Corp, quisiera solicitar asesoría en ${title}.`)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-auto pt-7 text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-paper transition-colors hover:text-gold"
             >
               Solicitar asesoría →
-            </Link>
+            </a>
           ) : null}
         </li>
       ))}

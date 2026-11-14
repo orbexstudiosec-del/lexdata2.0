@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero, Section } from "@/components/ui";
 import { site, whatsappUrl } from "@/lib/site";
-import { ContactForm } from "./contact-form";
+import { WhatsAppIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -72,14 +72,25 @@ export default function ContactPage() {
             </dl>
           </div>
 
-          <div className="border border-line bg-navy p-6 sm:p-8">
-            <h2 className="font-display text-2xl font-semibold">Envíanos tu consulta</h2>
-            <p className="mt-2 text-mist">
-              Te responderemos por correo electrónico. Los campos son obligatorios.
+          <div className="card relative isolate flex flex-col justify-center overflow-hidden p-8 text-center sm:p-12">
+            <div aria-hidden className="absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-[#25d366]/10 blur-3xl" />
+            <span className="mx-auto grid size-20 place-items-center rounded-full bg-[#25d366] text-white shadow-[0_10px_30px_rgb(37_211_102/0.35)]">
+              <WhatsAppIcon className="size-10" />
+            </span>
+            <h2 className="mt-6 font-display text-3xl font-bold">Escríbenos por WhatsApp</h2>
+            <p className="mx-auto mt-3 max-w-md text-mist">
+              Cuéntanos tu caso y un abogado de Lex Data Corp® te responderá en nuestro horario de atención.
             </p>
-            <div className="mt-6">
-              <ContactForm />
-            </div>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-8 inline-flex items-center gap-3 rounded-[3px] bg-[#25d366] px-8 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:-translate-y-px hover:bg-[#1fb857] hover:shadow-[0_10px_28px_rgb(37_211_102/0.35)]"
+            >
+              <WhatsAppIcon className="size-5" />
+              Enviar mensaje por WhatsApp
+            </a>
+            <p className="mt-4 text-sm text-stone">{site.phoneIntl}</p>
           </div>
         </div>
       </Section>
