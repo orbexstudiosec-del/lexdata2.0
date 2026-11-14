@@ -178,6 +178,80 @@
   font-weight: 600;
 }
 
+/* Tablas de los documentos legales: se desplazan en horizontal en pantallas pequeñas. */
+.tabla-legal {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+}
+
+.tabla-legal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.tabla-legal th,
+.tabla-legal td {
+  padding: 0.75rem 1rem;
+  vertical-align: top;
+  border-top: 1px solid var(--color-line);
+}
+
+.tabla-legal thead th {
+  border-top: 0;
+  background: var(--color-navy);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tabla-legal tbody th {
+  color: var(--color-paper);
+  font-weight: 600;
+}
+
+/* En el móvil cada fila se muestra como una ficha con la etiqueta de cada columna. */
+@media (max-width: 639px) {
+  .tabla-legal thead {
+    display: none;
+  }
+
+  .tabla-legal tr,
+  .tabla-legal th,
+  .tabla-legal td {
+    display: block;
+  }
+
+  .tabla-legal tbody tr + tr {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .tabla-legal tbody th,
+  .tabla-legal tbody td {
+    border-top: 0;
+    padding-block: 0.4rem;
+  }
+
+  .tabla-legal tbody tr {
+    padding-block: 0.6rem;
+  }
+
+  .tabla-legal tbody td::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
 /* Entrada suave de cada reseña del carrusel. */
 @keyframes aparecer {
   from {

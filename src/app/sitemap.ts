@@ -10,7 +10,9 @@ const pages = [
   { path: "/noticias", priority: 0.7 },
   { path: "/contacto", priority: 0.8 },
   { path: "/privacy-policy", priority: 0.2 },
+  { path: "/politica-de-proteccion-de-datos", priority: 0.2 },
   { path: "/cookies", priority: 0.2 },
+  { path: "/terminos-de-uso", priority: 0.2 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

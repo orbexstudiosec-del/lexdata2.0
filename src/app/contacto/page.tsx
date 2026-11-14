@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero, Section } from "@/components/ui";
+import Link from "next/link";
+import { legales, responsable } from "@/lib/legal";
 import { site, whatsappUrl } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/icons";
 
@@ -91,6 +93,17 @@ export default function ContactPage() {
               Enviar mensaje por WhatsApp
             </a>
             <p className="mt-4 text-sm text-stone">{site.phoneIntl}</p>
+            <p className="mx-auto mt-6 max-w-md border-t border-line pt-5 text-xs leading-relaxed text-fog">
+              Sus datos se tratan solo para atender su consulta, según la{" "}
+              <Link href={legales.privacidad.href} className="link text-mist">
+                Política de Privacidad
+              </Link>{" "}
+              y la{" "}
+              <Link href={legales.proteccion.href} className="link text-mist">
+                Política de Protección de Datos
+              </Link>{" "}
+              de {responsable.razonSocial}.
+            </p>
           </div>
         </div>
       </Section>

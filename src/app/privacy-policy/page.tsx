@@ -1,155 +1,175 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Correo, MedidasSeguridad, Tabla, vigencia } from "@/components/legal";
 import { LegalPage } from "@/components/legal-page";
-import { site } from "@/lib/site";
+import { infraestructura, legales, responsable } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "Política de privacidad",
+  title: "Política de Privacidad",
   description:
-    "Cómo Lex Data Corp recolecta, usa y protege tus datos personales, y cómo ejercer tus derechos conforme a la Ley Orgánica de Protección de Datos Personales.",
-  alternates: { canonical: "/privacy-policy" },
+    "Qué datos personales trata Lex Data Corp en su sitio web y en el software LexdataPro, con qué finalidad y cómo ejercer sus derechos conforme a la LOPDP.",
+  alternates: { canonical: legales.privacidad.href },
 };
 
 export default function PrivacyPage() {
   return (
     <LegalPage
-      title="Política de privacidad"
-      lead="Comprometidos con la transparencia, la seguridad y la confianza digital."
-      updated="Vigente desde el 2 de septiembre de 2025"
+      title="Política de Privacidad"
+      lead={`Sitio web www.lexdata.com.ec y software LexdataPro.`}
+      updated={vigencia("privacidad")}
       cta={{
-        title: "¿Tienes dudas sobre tu privacidad?",
-        lead: "Resolvemos tus consultas sobre protección de datos personales y el ejercicio de tus derechos.",
+        title: "¿Tiene dudas sobre sus datos?",
+        lead: "Escríbanos para ejercer sus derechos o resolver cualquier consulta sobre el tratamiento de sus datos personales.",
       }}
     >
-      <p>
-        Esta Política de Privacidad es parte integrante del Aviso Legal y de la{" "}
-        <Link href="/cookies">Política de Cookies</Link> de www.lexdata.com.ec.
-      </p>
-      <p>
-        En Lex Data Corp S.A.S., la protección de los datos personales no es solo una obligación
-        legal: es parte esencial de nuestro compromiso institucional con la transparencia, la
-        seguridad y la confianza digital.
-      </p>
-      <p>
-        Esta política establece los principios y procedimientos que rigen la recolección, uso,
-        tratamiento, almacenamiento, divulgación y protección de la información personal que
-        nuestros usuarios proporcionan al interactuar con nuestro sitio web.
-      </p>
-      <p>
-        Actuamos conforme a la normativa nacional e internacional aplicable en materia de
-        protección de datos, garantizando que cada proceso esté respaldado por estándares
-        técnicos, jurídicos y éticos.
-      </p>
-      <blockquote>
-        Al acceder, conectarse o utilizar de cualquier otra forma el sitio web, usted confirma que
-        ha leído, entendido y acepta los términos de esta Política de Privacidad.
-      </blockquote>
+      <h2>1. Responsable del tratamiento</h2>
+      <Tabla
+        cabecera={["Dato", "Detalle"]}
+        filas={[
+          ["Responsable", responsable.razonSocial],
+          ["RUC", responsable.ruc],
+          ["Domicilio", responsable.domicilio],
+          ["Correo para asuntos de datos personales", <Correo key="c">{responsable.correoDatos}</Correo>],
+          [
+            "Delegado de Protección de Datos",
+            <>
+              No designado. Lex Data aplica minimización de datos y revisa periódicamente si concurre alguno de los
+              supuestos del art. 48 LOPDP. Contacto: <Correo>{responsable.correoDatos}</Correo>
+            </>,
+          ],
+        ]}
+      />
 
-      <h2>Responsable del tratamiento</h2>
+      <h2>2. Datos personales que tratamos</h2>
+      <p>
+        A través del formulario de contacto del sitio web recogemos únicamente: nombre, apellido, correo electrónico,
+        teléfono y el contenido de su consulta. Los datos personales que tratamos son básicos. No solicitamos datos de
+        categorías especiales (salud, biometría, etc.) y le pedimos no incluirlos en su consulta.
+      </p>
+      <p>
+        <strong>Usuarios del software LexdataPro:</strong> si usted es usuario de la plataforma de su empresa, tratamos su
+        correo electrónico, su contraseña (almacenada de forma protegida), registros de ingreso (fecha, hora y dirección
+        IP) y la versión de los términos que aceptó. No le pedimos otros datos personales. El contenido que su empresa
+        carga en la plataforma es información de la empresa; no lo usamos para fines propios.
+      </p>
+      <p>
+        No instalamos cookies de análisis, publicidad ni seguimiento. Solo utilizamos cookies técnicas necesarias para el
+        funcionamiento del sitio (ver <Link href={legales.cookies.href}>Política de Cookies</Link>).
+      </p>
+
+      <h2>3. Finalidades y base de legitimación</h2>
+      <Tabla
+        cabecera={["Finalidad", "Base de legitimación (LOPDP)"]}
+        filas={[
+          [
+            "Crear y administrar su cuenta en LexdataPro, autenticar su acceso y garantizar la seguridad del sistema",
+            "Ejecución del contrato con su empresa (art. 7); no se basa en consentimiento",
+          ],
+          [
+            "Atender su consulta y responderle",
+            "Aplicación de medidas precontractuales a petición suya (art. 7) y su solicitud expresa al enviar el formulario",
+          ],
+          ["Preparar y enviar propuestas de servicios que usted solicite", "Medidas precontractuales / ejecución de contrato (art. 7)"],
+          [
+            "Conservar evidencia para atender reclamos y obligaciones legales",
+            "Cumplimiento de obligación legal / interés legítimo documentado",
+          ],
+        ]}
+      />
+      <p>No tomamos decisiones automatizadas ni elaboramos perfiles con sus datos.</p>
+
+      <h2>4. Aceptación del aviso y no envío de publicidad</h2>
+      <p>
+        El formulario contiene una casilla de reconocimiento de este aviso de privacidad, necesaria para enviar la
+        consulta, que no viene marcada de antemano. Navegar por el sitio no constituye consentimiento. Lex Data no envía
+        publicidad, promociones ni comunicaciones comerciales y no utiliza sus datos para ese fin; por eso no se solicita
+        ningún consentimiento de ese tipo. Si en el futuro cambiara esta política, se lo informaremos y le pediremos su
+        consentimiento específico antes de usar sus datos con otro fin.
+      </p>
+
+      <h2>5. Conservación</h2>
       <ul>
+        <li>Consultas atendidas sin relación posterior: 30 días desde la última comunicación.</li>
         <li>
-          <strong>Razón social:</strong> {site.legalName}
+          Datos de cuenta de LexdataPro: durante la vigencia del contrato con su empresa y hasta el plazo de devolución o
+          eliminación que este fije.
         </li>
         <li>
-          <strong>RUC:</strong> {site.ruc}
-        </li>
-        <li>
-          <strong>Dirección:</strong> {site.address.street}, {site.address.city}
-        </li>
-        <li>
-          <strong>Teléfono:</strong> {site.phoneDisplay}
-        </li>
-        <li>
-          <strong>Sitio web:</strong> {site.url}
+          Si se concreta un contrato: durante su vigencia y hasta el plazo de devolución o eliminación pactado en el
+          propio contrato, más el tiempo que exija la ley.
         </li>
       </ul>
+      <p>Vencido el plazo, los datos se eliminan o anonimizan.</p>
 
-      <h2>Finalidad del tratamiento</h2>
+      <h2>6. Destinatarios y encargados</h2>
       <p>
-        Los datos personales proporcionados por el titular son recolectados y tratados por Lex
-        Data Corp, en calidad de responsable, con el fin de ejecutar de manera legítima y
-        eficiente su objeto social:
+        No vendemos ni cedemos sus datos. Pueden acceder a ellos, bajo contrato y solo para prestarnos el servicio, los
+        proveedores que alojan el sitio y gestionan el correo: {infraestructura.proveedor} (sitio web, correo, software y
+        respaldos; servidores en {infraestructura.ubicacion}) y Resend, Inc. (envío del correo saliente; Estados Unidos).
+        Estos actúan como encargados del tratamiento y siguen nuestras instrucciones. Podremos comunicar datos a
+        autoridades cuando la ley lo exija.
       </p>
-      <ul>
-        <li>Identificar la naturaleza del servicio requerido.</li>
-        <li>Garantizar una atención personalizada.</li>
-        <li>Cumplir con obligaciones contractuales y legales.</li>
-        <li>Enviar información periódica sobre servicios.</li>
-      </ul>
-
-      <h2 id="derechos-titular">Derechos del titular de datos personales</h2>
-      <p>Conforme a la Ley Orgánica de Protección de Datos Personales, tienes derecho a:</p>
-      <ul>
-        <li>
-          <strong>Información:</strong> ser informado conforme a los principios de lealtad y
-          transparencia.
-        </li>
-        <li>
-          <strong>Acceso:</strong> conocer y obtener gratuitamente acceso a todos tus datos
-          personales.
-        </li>
-        <li>
-          <strong>Rectificación:</strong> rectificar y actualizar tus datos inexactos o
-          incompletos.
-        </li>
-        <li>
-          <strong>Eliminación:</strong> solicitar que se supriman tus datos personales.
-        </li>
-        <li>
-          <strong>Oposición:</strong> oponerte o negarte al tratamiento de tus datos personales.
-        </li>
-        <li>
-          <strong>Suspensión:</strong> suspender el tratamiento de tus datos cuando corresponda.
-        </li>
-      </ul>
-
-      <h2>Ejercicio de derechos</h2>
       <p>
-        Para conocer, actualizar, rectificar o suprimir tu información, o para revocar la
-        autorización, puedes usar cualquiera de estos canales:
-      </p>
-      <h3>Por correo electrónico</h3>
-      <p>
-        Envía un correo a <a href={`mailto:${site.email}`}>{site.email}</a> con tu petición,
-        adjuntando una copia del documento de identidad del titular.
-      </p>
-      <h3>Por escrito</h3>
-      <p>
-        Remite tu solicitud por escrito, acompañada de una copia del documento de identidad del
-        titular, a nuestra sede: {site.address.street}, {site.address.city}.
-      </p>
-      <h3>Plazo de respuesta</h3>
-      <p>
-        Todas las solicitudes serán atendidas conforme a la Ley Orgánica de Protección de Datos
-        Personales y su Reglamento, con un plazo máximo de respuesta de 15 días.
+        Los servidores del software están en {infraestructura.ubicacion.split(", ").pop()}. La contratación de un encargado
+        no es en sí una transferencia internacional (art. 23 Res. SPDP-SPD-2026-0004-R), pero informamos el país.
       </p>
 
-      <h2>Glosario</h2>
+      <h2 id="derechos-titular">7. Sus derechos</h2>
+      <p>De acuerdo con la LOPDP usted puede ejercer, de forma gratuita:</p>
       <ul>
         <li>
-          <strong>Dato personal:</strong> dato que identifica o hace identificable a una persona
-          natural, directa o indirectamente.
+          <strong>Información</strong> (art. 12): saber cómo y para qué tratamos sus datos.
         </li>
         <li>
-          <strong>Consentimiento:</strong> manifestación de la voluntad libre, específica,
-          informada e inequívoca del titular.
+          <strong>Acceso</strong> (art. 13): obtener sus datos y conocer su tratamiento.
         </li>
         <li>
-          <strong>Datos sensibles:</strong> datos relativos a etnia, identidad de género, religión,
-          ideología, salud, entre otros.
+          <strong>Rectificación y actualización</strong> (art. 14).
         </li>
         <li>
-          <strong>Tratamiento:</strong> cualquier operación o conjunto de operaciones realizadas
-          sobre datos personales.
+          <strong>Eliminación</strong> (art. 15).
         </li>
         <li>
-          <strong>Titular:</strong> persona natural cuyos datos son objeto de tratamiento.
+          <strong>Oposición</strong> (art. 16).
         </li>
         <li>
-          <strong>Anonimización:</strong> medidas para impedir la identificación de una persona
-          natural sin esfuerzos desproporcionados.
+          <strong>Portabilidad</strong> (art. 17), cuando sea aplicable.
+        </li>
+        <li>
+          <strong>Suspensión del tratamiento</strong> (art. 19), en los casos que la ley prevé.
+        </li>
+        <li>
+          <strong>No ser objeto de decisiones basadas únicamente en valoraciones automatizadas</strong> (arts. 20 y 21):
+          no las aplicamos.
         </li>
       </ul>
+      <p>
+        Para ejercerlos escriba a <Correo>{responsable.correoDatos}</Correo> indicando su nombre, un medio de contacto y
+        el derecho que desea ejercer; puede usar el formulario ARCO disponible en nuestras oficinas o al correo antes
+        mencionado. Responderemos en el plazo legal: diez (10) días hábiles (art. 62 LOPDP); en acceso, rectificación,
+        eliminación y oposición también rige el plazo de quince (15) días calendario, y aplicamos el que venza primero. Si
+        necesitamos aclarar su solicitud, se lo pediremos una sola vez dentro de los cinco (5) días hábiles siguientes y
+        usted dispondrá de diez (10) días hábiles para responder. Si no está conforme, puede presentar un reclamo ante la
+        Superintendencia de Protección de Datos Personales.
+      </p>
+
+      <h2>8. Seguridad</h2>
+      <p>Aplicamos medidas técnicas y organizativas razonables según el riesgo (art. 37 LOPDP):</p>
+      <MedidasSeguridad />
+      <p>
+        Ante una vulneración de seguridad que afecte sus derechos, notificaremos a la autoridad (art. 43) y a usted cuando
+        corresponda (art. 46).
+      </p>
+
+      <h2>9. Menores de edad</h2>
+      <p>El sitio está dirigido a profesionales y empresas. No recogemos intencionalmente datos de menores de edad.</p>
+
+      <h2>10. Cambios y vigencia</h2>
+      <p>
+        Publicaremos cualquier modificación en esta página, con la fecha de versión. Mantenga actualizados sus datos si
+        cambian. Consulte también la{" "}
+        <Link href={legales.proteccion.href}>Política de Protección de Datos Personales</Link>.
+      </p>
     </LegalPage>
   );
 }

@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { legales } from "@/lib/legal";
 import { nav, site } from "@/lib/site";
 import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon } from "./icons";
 
 const legal = [
-  { href: "/privacy-policy", label: "Política de privacidad" },
-  { href: "/cookies", label: "Política de cookies" },
+  { href: legales.privacidad.href, label: "Política de privacidad" },
+  { href: legales.proteccion.href, label: "Política de protección de datos" },
+  { href: legales.cookies.href, label: "Política de cookies" },
+  { href: legales.terminos.href, label: "Términos de uso de LexdataPro" },
 ];
 
 const social = [
