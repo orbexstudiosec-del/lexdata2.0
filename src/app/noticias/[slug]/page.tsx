@@ -47,10 +47,18 @@ export default async function PostPage(props: PageProps<"/noticias/[slug]">) {
     mainEntityOfPage: `${site.url}/noticias/${post.slug}`,
   };
 
+  const posicion = todas.findIndex((p) => p.slug === post.slug);
+
   return (
     <>
       <ContadorVisita slug={post.slug} />
-      <ArticuloNoticia post={post} relacionadas={[...todas.filter((p) => p.slug !== post.slug)].sort((a, b) => Number(b.categoria === post.categoria) - Number(a.categoria === post.categoria)).slice(0, 3)} />
+      <ArticuloNoticia
+        post={post}
+        relacionadas={[...todas.filter((p) => p.slug !== post.slug)].sort((a, b) => Number(b.categoria === post.categoria) - Number(a.categoria === post.categoria)).slice(0, 3)}
+        // La lista viene de la más reciente a la más antigua.
+        anterior={todas[posicion + 1]}
+        siguiente={posicion > 0 ? todas[posicion - 1] : undefined}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>
   );

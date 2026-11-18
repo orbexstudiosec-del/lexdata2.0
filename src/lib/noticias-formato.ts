@@ -31,3 +31,37 @@ export function formatDate(iso: string) {
 export function esNueva(iso: string, ahora: number) {
   return ahora - new Date(iso).getTime() < 7 * 86_400_000;
 }
+
+const slugTitulo = (t: string) =>
+  t
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60) || "seccion";
+
+const textoDe = (html: string) =>
+  html
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .trim();
+
+/** Pone un id a cada título (h2) del contenido y devuelve el índice para navegar por el artículo. */
+export function prepararArticulo(html: string) {
+  const indice: { id: string; texto: string }[] = [];
+  const usados = new Set<string>();
+  const conIds = html.replace(/<h2\b([^>]*)>([\s\S]*?)<\/h2>/g, (_, attrs: string, interior: string) => {
+    const texto = textoDe(interior);
+    if (!texto) return `<h2${attrs}>${interior}</h2>`;
+    let id = slugTitulo(texto);
+    for (let i = 2; usados.has(id); i++) id = `${slugTitulo(texto)}-${i}`;
+    usados.add(id);
+    indice.push({ id, texto });
+    return `<h2${attrs.replace(/\sid="[^"]*"/, "")} id="${id}">${interior}</h2>`;
+  });
+  return { html: conIds, indice };
+}
