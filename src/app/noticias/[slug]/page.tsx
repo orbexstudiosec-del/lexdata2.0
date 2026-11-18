@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticuloNoticia } from "@/components/articulo-noticia";
+import { ContadorVisita } from "@/components/contador-visita";
 import { listarNoticias, obtenerNoticia } from "@/lib/noticias";
 import { site } from "@/lib/site";
 
@@ -48,6 +49,7 @@ export default async function PostPage(props: PageProps<"/noticias/[slug]">) {
 
   return (
     <>
+      <ContadorVisita slug={post.slug} />
       <ArticuloNoticia post={post} relacionadas={todas.filter((p) => p.slug !== post.slug).slice(0, 3)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>

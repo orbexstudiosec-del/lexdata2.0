@@ -231,6 +231,30 @@
   text-underline-offset: 4px;
 }
 
+/* Texto de las políticas (HTML del editor del panel), dentro de .prose-lex. */
+.contenido-legal > * + * {
+  margin-top: 1.2rem;
+}
+
+.contenido-legal > :first-child {
+  margin-top: 0;
+}
+
+.contenido-legal ol {
+  padding-left: 1.4rem;
+  list-style: decimal;
+}
+
+.tabla-legal th > p,
+.tabla-legal td > p {
+  margin: 0;
+}
+
+.tabla-legal th > p + p,
+.tabla-legal td > p + p {
+  margin-top: 0.4rem;
+}
+
 /* Tablas de los documentos legales: se desplazan en horizontal en pantallas pequeñas. */
 .tabla-legal {
   overflow-x: auto;
