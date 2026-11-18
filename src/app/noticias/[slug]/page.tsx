@@ -1,73 +1,46 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Cta } from "@/components/cta";
-import { PostRow } from "@/components/post-card";
-import { PageHero } from "@/components/ui";
-import { formatDate, getPost, posts, type Block } from "@/lib/posts";
+import { ArticuloNoticia } from "@/components/articulo-noticia";
+import { listarNoticias, obtenerNoticia } from "@/lib/noticias";
 import { site } from "@/lib/site";
 
-type Props = { params: Promise<{ slug: string }> };
-
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+// Las noticias nuevas se generan al primer visitante y quedan en caché.
+export async function generateStaticParams() {
+  return (await listarNoticias()).map((n) => ({ slug: n.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPost(slug);
+export async function generateMetadata(props: PageProps<"/noticias/[slug]">): Promise<Metadata> {
+  const { slug } = await props.params;
+  const post = await obtenerNoticia(slug);
   if (!post) return {};
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: post.titulo,
+    description: post.extracto,
     alternates: { canonical: `/noticias/${post.slug}` },
     openGraph: {
       type: "article",
-      title: post.title,
-      description: post.excerpt,
-      publishedTime: post.date,
-      images: [post.image],
+      title: post.titulo,
+      description: post.extracto,
+      publishedTime: post.fecha,
+      modifiedTime: post.actualizada,
+      images: post.imagen ? [post.imagen] : undefined,
     },
   };
 }
 
-function renderBlock(block: Block, i: number) {
-  switch (block.type) {
-    case "h2":
-      return <h2 key={i}>{block.text}</h2>;
-    case "h3":
-      return <h3 key={i}>{block.text}</h3>;
-    case "p":
-      return <p key={i}>{block.text}</p>;
-    case "quote":
-      return <blockquote key={i}>{block.text}</blockquote>;
-    case "ul":
-      return (
-        <ul key={i}>
-          {block.items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      );
-  }
-}
-
-export default async function PostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getPost(slug);
+export default async function PostPage(props: PageProps<"/noticias/[slug]">) {
+  const { slug } = await props.params;
+  const [post, todas] = await Promise.all([obtenerNoticia(slug), listarNoticias()]);
   if (!post) notFound();
-
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    image: `${site.url}${post.image}`,
+    headline: post.titulo,
+    description: post.extracto,
+    datePublished: post.fecha,
+    dateModified: post.actualizada,
+    image: post.imagen ?? undefined,
     author: { "@type": "Organization", name: site.name, url: site.url },
     publisher: { "@type": "Organization", name: site.name, url: site.url },
     mainEntityOfPage: `${site.url}/noticias/${post.slug}`,
@@ -75,58 +48,8 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
-      <PageHero
-        crumb={post.category}
-        parent={{ href: "/noticias", label: "Noticias" }}
-        title={post.title}
-        lead={
-          <>
-            <time dateTime={post.date}>{formatDate(post.date)}</time> · {site.name}
-          </>
-        }
-      />
-
-      <article className="wrap py-10 sm:py-14">
-        <div className="max-w-[44rem]">
-          {post.imageFit === "contain" ? (
-            <div className="relative mb-10 aspect-[16/9] border border-line bg-navy">
-              <Image src={post.image} alt="" fill priority sizes="44rem" className="object-contain p-10" />
-            </div>
-          ) : (
-            // Las portadas llevan texto: se muestran completas, sin recorte.
-            <Image
-              src={post.image}
-              alt=""
-              width={1200}
-              height={800}
-              priority
-              sizes="(min-width: 768px) 44rem, 100vw"
-              className="mb-10 h-auto w-full border border-line"
-            />
-          )}
-          <div className="prose-lex">{post.content.map(renderBlock)}</div>
-        </div>
-      </article>
-
-      <section className="border-t border-line bg-navy py-12 sm:py-16">
-        <div className="wrap">
-          <h2 className="font-display text-2xl font-semibold">Sigue leyendo</h2>
-          <div className="mt-6 border-b border-line">
-            {related.map((p) => (
-              <PostRow key={p.slug} post={p} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Cta
-        title="¿Necesitas ayuda con este tema?"
-        lead="Evaluamos tu situación y te guiamos paso a paso para cumplir sin contratiempos."
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <ArticuloNoticia post={post} relacionadas={todas.filter((p) => p.slug !== post.slug).slice(0, 3)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>
   );
 }

@@ -4,14 +4,15 @@ import Link from "next/link";
 import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { posts } from "@/lib/posts";
+import { listarNoticias } from "@/lib/noticias";
 import { google, resenas } from "@/lib/resenas";
 import { CarruselResenas } from "@/components/carrusel-resenas";
 import { services } from "@/lib/services";
 import { certifications, training, whatsappUrl } from "@/lib/site";
 
 
-export default function HomePage() {
+export default async function HomePage() {
+  const noticias = await listarNoticias();
   return (
     <>
       <div className="relative isolate overflow-hidden bg-ink text-white">
@@ -196,6 +197,7 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {noticias.length ? (
       <Section id="noticias">
         <SectionHeading
           center
@@ -204,7 +206,7 @@ export default function HomePage() {
           lead="Cambios regulatorios en Ecuador y cómo afectan a tu organización."
         />
         <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(0, 3).map((post) => (
+          {noticias.slice(0, 3).map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
         </div>
@@ -214,6 +216,7 @@ export default function HomePage() {
           </ButtonLink>
         </div>
       </Section>
+      ) : null}
 
       <Cta />
     </>

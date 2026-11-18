@@ -23,8 +23,20 @@ const legacyPosts: Record<string, string> = {
     "como-saber-si-tu-empresa-necesita-un-delegado-de-proteccion-de-datos",
 };
 
+// Pruebas en el propio equipo: el panel de noticias corre en localhost:3001.
+const pruebasLocales = process.env.NODE_ENV === "development" || (process.env.NOTICIAS_API ?? "").includes("localhost");
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    // Imágenes de las noticias, servidas por el panel (protecciondedatos.lexdata.com.ec).
+    remotePatterns: [
+      { protocol: "https", hostname: "protecciondedatos.lexdata.com.ec", pathname: "/api/publico/noticias/imagen/**" },
+      ...(pruebasLocales ? [{ protocol: "http" as const, hostname: "localhost", port: "3001", pathname: "/api/publico/noticias/imagen/**" }] : []),
+    ],
+    // Solo en pruebas en el propio equipo (el panel en localhost); nunca en el servidor.
+    dangerouslyAllowLocalIP: pruebasLocales,
+  },
   async redirects() {
     return [
       ...Object.entries(legacyPosts).map(([from, to]) => ({

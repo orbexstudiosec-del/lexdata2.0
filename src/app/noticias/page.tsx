@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
 import { PageHero, Section } from "@/components/ui";
-import { posts } from "@/lib/posts";
+import { listarNoticias } from "@/lib/noticias";
 
 export const metadata: Metadata = {
   title: "Noticias y actualidad normativa",
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/noticias" },
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const noticias = await listarNoticias();
   return (
     <>
       <PageHero
@@ -20,11 +21,15 @@ export default function NewsPage() {
         lead="Cambios regulatorios en Ecuador explicados con claridad: qué exige la norma, a quién aplica y qué hacer."
       />
       <Section>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, i) => (
-            <PostCard key={post.slug} post={post} priority={i < 3} />
-          ))}
-        </div>
+        {noticias.length ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {noticias.map((post, i) => (
+              <PostCard key={post.slug} post={post} priority={i < 3} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-mist">Pronto publicaremos nuevas noticias.</p>
+        )}
       </Section>
       <Cta
         title="¿Esta norma aplica a tu organización?"

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { posts } from "@/lib/posts";
+import { listarNoticias } from "@/lib/noticias";
 import { site } from "@/lib/site";
 
 const pages = [
@@ -15,12 +15,13 @@ const pages = [
   { path: "/terminos-de-uso", priority: 0.2 },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const noticias = await listarNoticias();
   return [
     ...pages.map(({ path, priority }) => ({ url: `${site.url}${path}`, priority })),
-    ...posts.map((post) => ({
+    ...noticias.map((post) => ({
       url: `${site.url}/noticias/${post.slug}`,
-      lastModified: post.date,
+      lastModified: post.actualizada,
       priority: 0.6,
     })),
   ];
