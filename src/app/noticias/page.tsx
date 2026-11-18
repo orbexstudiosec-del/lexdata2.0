@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Cta } from "@/components/cta";
-import { PostCard } from "@/components/post-card";
+import { ExploradorNoticias } from "@/components/explorador-noticias";
 import { PageHero, Section } from "@/components/ui";
-import { listarNoticias } from "@/lib/noticias";
+import { esNueva, listarNoticias } from "@/lib/noticias";
 
 export const metadata: Metadata = {
   title: "Noticias y actualidad normativa",
@@ -13,6 +13,9 @@ export const metadata: Metadata = {
 
 export default async function NewsPage() {
   const noticias = await listarNoticias();
+  // Se calcula al generar la página (se regenera cada pocos minutos).
+  // eslint-disable-next-line react-hooks/purity
+  const ahora = Date.now();
   return (
     <>
       <PageHero
@@ -22,11 +25,7 @@ export default async function NewsPage() {
       />
       <Section>
         {noticias.length ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {noticias.map((post, i) => (
-              <PostCard key={post.slug} post={post} priority={i < 3} />
-            ))}
-          </div>
+          <ExploradorNoticias noticias={noticias} nuevas={noticias.filter((n) => esNueva(n.fecha, ahora)).map((n) => n.slug)} />
         ) : (
           <p className="text-center text-mist">Pronto publicaremos nuevas noticias.</p>
         )}

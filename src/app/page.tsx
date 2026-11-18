@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { listarNoticias } from "@/lib/noticias";
+import { esNueva, listarNoticias } from "@/lib/noticias";
 import { google, resenas } from "@/lib/resenas";
 import { CarruselResenas } from "@/components/carrusel-resenas";
 import { services } from "@/lib/services";
@@ -13,6 +13,9 @@ import { certifications, training, whatsappUrl } from "@/lib/site";
 
 export default async function HomePage() {
   const noticias = await listarNoticias();
+  // Se calcula al generar la página (se regenera cada pocos minutos).
+  // eslint-disable-next-line react-hooks/purity
+  const ahora = Date.now();
   return (
     <>
       <div className="relative isolate overflow-hidden bg-ink text-white">
@@ -207,7 +210,7 @@ export default async function HomePage() {
         />
         <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {noticias.slice(0, 3).map((post) => (
-            <PostCard key={post.slug} post={post} />
+            <PostCard key={post.slug} post={post} nueva={esNueva(post.fecha, ahora)} />
           ))}
         </div>
         <div className="mt-12 text-center">

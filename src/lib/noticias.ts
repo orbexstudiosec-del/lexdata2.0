@@ -1,23 +1,12 @@
 import "server-only";
+import type { Noticia } from "./noticias-formato";
 
-/**
- * Noticias publicadas desde el panel de administración (protecciondedatos.lexdata.com.ec/admin/noticias).
- * Se guardan en caché y el panel avisa a /api/revalidar-noticias al publicar, para que se vean enseguida;
- * además se refrescan solas cada 5 minutos (así aparecen también las programadas).
+export { esNueva, formatDate, type Noticia } from "./noticias-formato";
+
+/*
+ * Las noticias se guardan en caché y el panel avisa a /api/revalidar-noticias al publicar, para que se vean
+ * enseguida; además se refrescan solas cada 5 minutos (así aparecen también las programadas y las lecturas).
  */
-export type Noticia = {
-  slug: string;
-  titulo: string;
-  extracto: string;
-  categoria: string;
-  imagen: string | null;
-  imagenAjuste: "cubrir" | "contener";
-  /** ISO 8601. */
-  fecha: string;
-  actualizada: string;
-  /** HTML ya saneado por el panel. */
-  contenido?: string;
-};
 
 export const ETIQUETA_NOTICIAS = "noticias";
 
@@ -48,10 +37,4 @@ export async function obtenerNoticia(slug: string): Promise<Noticia | null> {
 export async function vistaPreviaNoticia(id: string, firma: string) {
   if (!/^[a-f0-9-]{36}$/.test(id) || !/^[a-f0-9]{32}$/.test(firma)) return null;
   return pedir<Noticia & { estado: string }>(`/api/publico/noticias/vista-previa/${id}?firma=${firma}`, { cache: "no-store" });
-}
-
-const formato = new Intl.DateTimeFormat("es-EC", { day: "numeric", month: "long", year: "numeric", timeZone: "America/Guayaquil" });
-
-export function formatDate(iso: string) {
-  return formato.format(new Date(iso));
 }
