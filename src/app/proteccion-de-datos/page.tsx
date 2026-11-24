@@ -2,6 +2,7 @@ import { ClipboardCheck, FileSearch, GraduationCap, Lock, Scale, UserCheck, User
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink, PageHero, Section, SectionHeading } from "@/components/ui";
+import { listarPreguntas } from "@/lib/preguntas";
 import { site, whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -43,24 +44,6 @@ const services = [
   },
 ];
 
-const faqs = [
-  {
-    q: "¿Quiénes deben cumplir con la Ley de Protección de Datos Personales en Ecuador?",
-    a: "La normativa se aplica a los responsables y encargados del tratamiento comprendidos en su ámbito de aplicación, incluyendo empresas, instituciones y profesionales, según las actividades que realizan.",
-  },
-  {
-    q: "¿Todas las empresas necesitan un Delegado de Protección de Datos Personales?",
-    a: "La obligación de designar delegado depende de los supuestos establecidos en la normativa aplicable; no todas las empresas están obligadas a contar con uno.",
-  },
-  {
-    q: "¿Qué comprende un proceso de adecuación a la LOPDP?",
-    a: "Puede incluir diagnóstico, identificación de tratamientos y riesgos, evaluación de obligaciones y establecimiento de medidas de cumplimiento adecuadas a cada organización.",
-  },
-  {
-    q: "¿Cómo puedo conocer el nivel de cumplimiento de mi organización?",
-    a: "Lex Data Corp® ofrece una evaluación inicial sin costo para orientar a los interesados sobre su situación y posibles necesidades de adecuación.",
-  },
-];
 
 const platform = [
   { Icon: FileSearch, title: "Gestión centralizada", text: "Acceso a la plataforma de documentación y seguimiento de cumplimiento." },
@@ -68,17 +51,17 @@ const platform = [
   { Icon: Users, title: "Asesoría especializada", text: "Acompañamiento jurídico en protección de datos personales y cumplimiento normativo." },
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
-
-export default function DataProtectionPage() {
+export default async function DataProtectionPage() {
+  const faqs = await listarPreguntas();
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.pregunta,
+      acceptedAnswer: { "@type": "Answer", text: f.respuesta },
+    })),
+  };
   return (
     <>
       <PageHero
@@ -159,22 +142,28 @@ export default function DataProtectionPage() {
         </div>
       </section>
 
-      <Section>
-        <SectionHeading center label="Preguntas frecuentes" title="Preguntas frecuentes" />
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-line border-y border-line">
-          {faqs.map((f) => (
-            <details key={f.q} className="group py-5">
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg font-bold text-paper [&::-webkit-details-marker]:hidden">
-                {f.q}
-                <span aria-hidden className="mt-0.5 text-2xl leading-none text-gold transition-transform group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 text-justify text-mist">{f.a}</p>
-            </details>
-          ))}
-        </div>
-      </Section>
+      {faqs.length ? (
+        <Section>
+          <SectionHeading center label="Preguntas frecuentes" title="Preguntas frecuentes" />
+          <div className="mx-auto mt-12 max-w-3xl divide-y divide-line border-y border-line">
+            {faqs.map((f) => (
+              <details key={f.pregunta} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg font-bold text-paper [&::-webkit-details-marker]:hidden">
+                  {f.pregunta}
+                  <span aria-hidden className="mt-0.5 text-2xl leading-none text-gold transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                {f.respuesta.split(/\n\s*\n/).map((parrafo, i) => (
+                  <p key={i} className="mt-3 whitespace-pre-line text-justify text-mist">
+                    {parrafo}
+                  </p>
+                ))}
+              </details>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       <Section band>
         <SectionHeading
@@ -183,6 +172,11 @@ export default function DataProtectionPage() {
           title="Plataforma exclusiva para nuestros clientes"
           lead="Nuestros clientes autorizados cuentan con acceso a una plataforma especializada para consultar la documentación y la información de cumplimiento disponible en su entorno privado."
         />
+        <p className="mt-6 text-center">
+          <span className="gold-metal inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-[0.1em] text-ink">
+            Incluida en la asesoría, sin costo adicional
+          </span>
+        </p>
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {platform.map(({ Icon, title, text }) => (
             <li key={title} className="card p-8 text-center">
@@ -199,10 +193,9 @@ export default function DataProtectionPage() {
         </div>
       </Section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
-      />
+      {faqs.length ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
+      ) : null}
     </>
   );
 }

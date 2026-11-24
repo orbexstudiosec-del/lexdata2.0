@@ -1,6 +1,6 @@
 export const site = {
   name: "Lex Data Corp",
-  legalName: "LEX DATA CORPORATION DATALEXIS S.A.S.",
+  legalName: "LEX DATA CORP DATALEXIS S.A.S.",
   ruc: "1091799175001",
   url: "https://www.lexdata.com.ec",
   tagline: "Derecho Empresarial, Digital y Protección de Datos",

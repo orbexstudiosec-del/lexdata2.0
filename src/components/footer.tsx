@@ -28,8 +28,8 @@ export function Footer() {
         <div>
           <Image src="/img/logo.png" alt={site.name} width={1596} height={268} className="h-11 w-auto" />
           <p className="mt-5 max-w-xs">
-            Protegemos los intereses digitales de empresas y profesionales, con experiencia legal y
-            soluciones tecnológicas.
+            Protegemos los intereses digitales de empresas y profesionales, con experiencia jurídica
+            especializada.
           </p>
           <ul className="mt-5 flex gap-4">
             {social.map(({ href, label, Icon }) => (
