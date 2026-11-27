@@ -41,7 +41,7 @@ export default async function HomePage() {
               compañías, contratos, protección de datos personales y cumplimiento normativo.
               Soluciones jurídicas especializadas con atención en todo el Ecuador.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <ButtonLink href="/servicios" variant="gold">
                 Conocer servicios
               </ButtonLink>
@@ -60,19 +60,20 @@ export default async function HomePage() {
           title="Un servicio legal completo, a su medida"
           lead="Ofrecemos consultoría, capacitación y auditoría en las siguientes áreas:"
         />
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-10 grid gap-3 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-5">
           {services.map(({ slug, icon: Icon, title }) => (
             <li key={slug}>
               <Link
                 href={`/servicios#${slug}`}
-                className="card group flex h-full flex-col items-center p-7 text-center transition-colors duration-300 hover:border-gold"
+                className="card group flex h-full items-center gap-4 p-4 text-left transition-colors duration-300 hover:border-gold sm:flex-col sm:gap-0 sm:p-7 sm:text-center"
               >
-                <span className="icon-badge size-14">
-                  <Icon aria-hidden className="size-6" strokeWidth={1.6} />
+                <span className="icon-badge size-12 shrink-0 sm:size-14">
+                  <Icon aria-hidden className="size-5 sm:size-6" strokeWidth={1.6} />
                 </span>
-                <h3 className="mt-4 font-display text-lg font-bold leading-snug">{title}</h3>
-                <span className="mt-auto pt-4 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold">
-                  Ver más →
+                <h3 className="font-display text-lg font-bold leading-snug sm:mt-4">{title}</h3>
+                <span className="ml-auto text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold sm:ml-0 sm:mt-auto sm:pt-4">
+                  <span aria-hidden className="text-xl sm:hidden">→</span>
+                  <span className="max-sm:sr-only">Ver más →</span>
                 </span>
               </Link>
             </li>
@@ -163,7 +164,7 @@ export default async function HomePage() {
             Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada, o
             cuéntanos la tuya.
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <div className="mx-auto mt-9 grid max-w-sm gap-3 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center">
             <ButtonLink href={google.verResenas} variant="gold">
               Ver todas las reseñas
             </ButtonLink>

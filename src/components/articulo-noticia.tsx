@@ -23,11 +23,11 @@ function Cabecera({ post }: { post: Noticia }) {
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
       <div className="wrap py-12 sm:py-20">
         <nav aria-label="Miga de pan" className="flex flex-wrap items-center gap-1.5 text-sm text-mist">
-          <Link href="/" className="hover:text-gold">
+          <Link href="/" className="inline-block py-2 hover:text-gold">
             Inicio
           </Link>
           <ChevronRight aria-hidden className="size-3.5 text-gold/70" />
-          <Link href="/noticias" className="hover:text-gold">
+          <Link href="/noticias" className="inline-block py-2 hover:text-gold">
             Noticias
           </Link>
           {post.categoria ? (
@@ -187,7 +187,7 @@ export function ArticuloNoticia({
 
           <div className="mt-8 flex flex-col gap-5 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
             <Compartir url={url} titulo={post.titulo} />
-            <Link href="/noticias" className="inline-flex items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-gold">
+            <Link href="/noticias" className="inline-flex items-center gap-2 py-2 text-sm font-semibold text-mist transition-colors hover:text-gold">
               <ArrowLeft aria-hidden className="size-4" />
               Todas las noticias
             </Link>
@@ -218,7 +218,7 @@ export function ArticuloNoticia({
               <h2 className="font-display text-2xl font-semibold sm:text-3xl">
                 {post.categoria && relacionadas.some((r) => r.categoria === post.categoria) ? `Más sobre ${post.categoria}` : "Sigue leyendo"}
               </h2>
-              <Link href="/noticias" className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:underline">
+              <Link href="/noticias" className="inline-flex items-center gap-2 py-2 text-sm font-semibold text-gold hover:underline">
                 Ver todas
                 <ArrowRight aria-hidden className="size-4" />
               </Link>

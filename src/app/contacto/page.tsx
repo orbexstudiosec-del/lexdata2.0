@@ -36,7 +36,7 @@ export default function ContactPage() {
               <div>
                 <dt className={termClass}>WhatsApp y teléfono</dt>
                 <dd className={detailClass}>
-                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="link text-paper">
+                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="link inline-block py-1.5 text-paper">
                     {site.phoneIntl}
                   </a>
                 </dd>
@@ -44,7 +44,7 @@ export default function ContactPage() {
               <div className="border-t border-line pt-5">
                 <dt className={termClass}>Correo</dt>
                 <dd className={detailClass}>
-                  <a href={`mailto:${site.email}`} className="link break-all text-paper">
+                  <a href={`mailto:${site.email}`} className="link inline-block break-all py-1.5 text-paper">
                     {site.email}
                   </a>
                 </dd>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   <br />
                   {site.address.city}, {site.address.country}
                   <br />
-                  <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="link text-paper">
+                  <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="link inline-block py-1.5 text-paper">
                     Ver en Google Maps
                   </a>
                 </dd>
@@ -74,7 +74,7 @@ export default function ContactPage() {
             </dl>
           </div>
 
-          <div className="card relative isolate flex flex-col justify-center overflow-hidden p-8 text-center sm:p-12">
+          <div className="card relative isolate order-first flex flex-col justify-center overflow-hidden p-6 text-center sm:p-12 lg:order-none">
             <div aria-hidden className="absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-[#25d366]/10 blur-3xl" />
             <span className="mx-auto grid size-20 place-items-center rounded-full bg-[#25d366] text-white shadow-[0_10px_30px_rgb(37_211_102/0.35)]">
               <WhatsAppIcon className="size-10" />
@@ -87,7 +87,7 @@ export default function ContactPage() {
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-auto mt-8 inline-flex items-center gap-3 rounded-[3px] bg-[#25d366] px-8 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:-translate-y-px hover:bg-[#1fb857] hover:shadow-[0_10px_28px_rgb(37_211_102/0.35)]"
+              className="mx-auto mt-8 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-[3px] bg-[#25d366] px-5 py-4 text-sm font-semibold uppercase tracking-[0.06em] text-white sm:w-auto sm:px-8 transition hover:-translate-y-px hover:bg-[#1fb857] hover:shadow-[0_10px_28px_rgb(37_211_102/0.35)]"
             >
               <WhatsAppIcon className="size-5" />
               Enviar mensaje por WhatsApp

@@ -19,19 +19,19 @@ const social = [
 ];
 
 const headingClass = "font-display text-lg font-bold text-white";
-const linkClass = "hover:text-white hover:underline";
+const linkClass = "inline-block py-1.5 hover:text-white hover:underline";
 
 export function Footer() {
   return (
     <footer className="bg-ink-2 text-[0.95rem] text-mist">
-      <div className="wrap grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
-        <div>
+      <div className="wrap grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:py-16 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+        <div className="col-span-2 lg:col-span-1">
           <Image src="/img/logo.png" alt={site.name} width={1596} height={268} className="h-11 w-auto" />
           <p className="mt-5 max-w-xs">
             Protegemos los intereses digitales de empresas y profesionales, con experiencia jurídica
             especializada.
           </p>
-          <ul className="mt-5 flex gap-4">
+          <ul className="-ml-2.5 mt-4 flex gap-1">
             {social.map(({ href, label, Icon }) => (
               <li key={label}>
                 <a
@@ -39,7 +39,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="block hover:text-gold"
+                  className="grid size-11 place-items-center rounded-full transition-colors hover:bg-white/5 hover:text-gold"
                 >
                   <Icon className="size-5" />
                 </a>
@@ -50,7 +50,7 @@ export function Footer() {
 
         <nav aria-label="Pie: sitio">
           <h2 className={headingClass}>Sitio</h2>
-          <ul className="mt-4 grid gap-2">
+          <ul className="mt-3 grid gap-0.5">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className={linkClass}>
@@ -63,7 +63,7 @@ export function Footer() {
 
         <nav aria-label="Pie: legal">
           <h2 className={headingClass}>Información legal</h2>
-          <ul className="mt-4 grid gap-2">
+          <ul className="mt-3 grid gap-0.5">
             {legal.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className={linkClass}>
@@ -74,7 +74,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <address className="not-italic">
+        <address className="col-span-2 not-italic sm:col-span-1">
           <h2 className={headingClass}>Oficina</h2>
           <p className="mt-3">
             {site.address.street}

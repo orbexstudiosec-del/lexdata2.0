@@ -154,7 +154,7 @@ export function Header() {
                 className="flex items-center justify-center gap-2 rounded-[3px] border-[1.5px] border-gold px-4 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gold"
               >
                 <UserRound aria-hidden className="size-4" />
-                Protección de datos · Acceso para clientes
+                Protección de datos
               </Link>
               <a href={site.phoneHref}>Tel. {site.phoneDisplay}</a>
               <p>

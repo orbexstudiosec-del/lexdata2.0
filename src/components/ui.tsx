@@ -120,8 +120,8 @@ export function PageHero({
           {title}
         </h1>
         {lead ? <p className="mx-auto mt-4 max-w-2xl text-lg text-mist">{lead}</p> : null}
-        <nav aria-label="Miga de pan" className="mt-6 text-sm text-mist">
-          <Link href="/" className="hover:text-gold">
+        <nav aria-label="Miga de pan" className="mt-4 text-sm text-mist">
+          <Link href="/" className="inline-block py-2 hover:text-gold">
             Inicio
           </Link>
           {parent ? (
@@ -129,7 +129,7 @@ export function PageHero({
               <span aria-hidden className="mx-2 text-gold">
                 /
               </span>
-              <Link href={parent.href} className="hover:text-gold">
+              <Link href={parent.href} className="inline-block py-2 hover:text-gold">
                 {parent.label}
               </Link>
             </>
@@ -141,7 +141,7 @@ export function PageHero({
             {crumb}
           </span>
         </nav>
-        {children ? <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">{children}</div> : null}
+        {children ? <div className="mx-auto mt-7 grid max-w-sm gap-3 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6">{children}</div> : null}
       </div>
     </div>
   );

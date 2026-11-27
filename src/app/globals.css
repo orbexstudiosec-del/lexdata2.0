@@ -329,6 +329,20 @@
   }
 }
 
+/* En el móvil el texto justificado deja huecos grandes entre palabras: alineación normal. */
+@media (max-width: 639px) {
+  .text-justify {
+    text-align: inherit !important;
+    text-align-last: auto !important;
+  }
+
+  .prose-lex,
+  .prose-lex p,
+  .prose-lex li {
+    text-align: left !important;
+  }
+}
+
 /* Entrada suave (tarjetas de noticias). */
 @keyframes aparecer {
   from {
