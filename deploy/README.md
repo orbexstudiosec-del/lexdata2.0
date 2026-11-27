@@ -39,3 +39,15 @@ Firewall: además de 22/80/443, abiertos 25, 465, 587 y 993.
   pasa por el proxy de Cloudflare, y fail2ban necesita ver la IP real.
 - MX, SPF, DKIM y DMARC: los del servidor propio, ver [correo/README.md](correo/README.md).
 - Los subdominios del antiguo cPanel de Namecheap (`cpanel`, `ftp`, `autodiscover`…) ya no sirven.
+
+## Seguridad (auditoría de noviembre de 2026)
+
+- **Copias de seguridad:** `lexdata-respaldo` (en `deploy/respaldos/`) corre cada día a las 03:30 (hora de Ecuador)
+  con `lexdata-respaldo.timer`. Guarda en `/root/respaldos/automaticos` un archivo cifrado con GPG (AES-256)
+  con las bases de datos, documentos, buzones, claves DKIM y configuración; conserva 14 días.
+  La clave está en `/root/.respaldo-clave` (guárdela también fuera del servidor).
+- **SSH:** solo con clave (`/etc/ssh/sshd_config.d/90-lexdata.conf`).
+- **Redis:** con contraseña (la usan rspamd y Evolution).
+- **Evolution API:** contenedor Docker, solo accesible desde el servidor; recrear con `/srv/evolution/iniciar.sh`.
+- **Correo:** DMARC `p=quarantine`, CAA (solo Let's Encrypt y las de Cloudflare), MTA-STS en modo `testing`
+  (`mta-sts.lexdata.com.ec`) e informes TLS-RPT a postmaster@.

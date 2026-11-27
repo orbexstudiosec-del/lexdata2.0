@@ -54,3 +54,15 @@ protecciondedatos.lexdata.com.ec {
 	reverse_proxy 127.0.0.1:3001
 	header -Server
 }
+
+# MTA-STS: política que pide a los demás servidores entregar el correo a mail.lexdata.com.ec solo cifrado.
+# Modo «testing»: informa de problemas sin rechazar correo. Pasar a «enforce» cuando los informes estén limpios.
+mta-sts.lexdata.com.ec {
+	header /.well-known/mta-sts.txt Content-Type "text/plain; charset=utf-8"
+	respond /.well-known/mta-sts.txt `version: STSv1
+mode: testing
+mx: mail.lexdata.com.ec
+max_age: 604800
+` 200
+	respond 404
+}

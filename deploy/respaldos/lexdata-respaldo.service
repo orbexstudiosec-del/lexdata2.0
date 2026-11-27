@@ -1,0 +1,9 @@
+[Unit]
+Description=Copia de seguridad diaria cifrada de Lex Data
+After=postgresql.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/lexdata-respaldo
+Nice=10
+IOSchedulingClass=idle

@@ -1,0 +1,10 @@
+[Unit]
+Description=Copia de seguridad diaria de Lex Data (03:30 hora de Ecuador)
+
+[Timer]
+OnCalendar=*-*-* 08:30:00 UTC
+Persistent=true
+RandomizedDelaySec=10m
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Copia de seguridad diaria, cifrada (GPG, AES-256), de todo lo necesario para reconstruir el servidor:
+# bases de datos, documentos subidos, buzones de correo, claves DKIM y configuración.
+# Se guarda en /root/respaldos/automaticos y se conservan 14 días.
+# Restaurar: gpg --batch --passphrase-file /root/.respaldo-clave -d ARCHIVO.tar.zst.gpg | tar --zstd -x
+set -euo pipefail
+umask 077
+DESTINO=/root/respaldos/automaticos
+CLAVE=/root/.respaldo-clave
+DIAS=14
+FECHA=$(date -u +%Y%m%d_%H%M%S)
+TRABAJO=$(mktemp -d)
+trap 'rm -rf "$TRABAJO"' EXIT
+mkdir -p "$DESTINO"
+[ -s "$CLAVE" ] || { openssl rand -base64 48 >"$CLAVE"; chmod 600 "$CLAVE"; }
+
+# Bases de datos (volcado consistente)
+sudo -u postgres pg_dump -Fc lexdata_pdp >"$TRABAJO/lexdata_pdp.dump"
+sudo -u postgres pg_dump -Fc evolution >"$TRABAJO/evolution.dump"
+sqlite3 /var/lib/roundcube/roundcube.db ".backup '$TRABAJO/roundcube.db'" 2>/dev/null || cp /var/lib/roundcube/roundcube.db "$TRABAJO/"
+
+ARCHIVO="$DESTINO/lexdata-$FECHA.tar.zst.gpg"
+tar --zstd -c -C / \
+  --ignore-failed-read \
+  "${TRABAJO#/}" \
+  srv/pdp/uploads srv/pdp/app/.env.local srv/lexdata/app/.env.local \
+  srv/evolution/evolution.env srv/evolution/iniciar.sh srv/evolution/instances \
+  var/vmail var/lib/rspamd/dkim \
+  etc/postfix etc/dovecot etc/caddy etc/rspamd/local.d etc/fail2ban/jail.d etc/fail2ban/filter.d etc/fail2ban/action.d \
+  etc/ssh/sshd_config.d etc/redis/redis.conf etc/systemd/journald.conf.d etc/logrotate.conf \
+  srv/roundcube/config srv/roundcube/plugins/lexdata_login \
+  usr/local/bin 2>/dev/null |
+  gpg --batch --yes --symmetric --cipher-algo AES256 --passphrase-file "$CLAVE" -o "$ARCHIVO"
+
+find "$DESTINO" -name 'lexdata-*.tar.zst.gpg' -mtime +$DIAS -delete
+echo "Respaldo: $ARCHIVO ($(du -h "$ARCHIVO" | cut -f1))"
