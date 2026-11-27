@@ -1,12 +1,11 @@
-import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Cta } from "@/components/cta";
 import { PostCard } from "@/components/post-card";
 import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { esNueva, listarNoticias } from "@/lib/noticias";
-import { google, resenas } from "@/lib/resenas";
-import { CarruselResenas } from "@/components/carrusel-resenas";
+import { google } from "@/lib/resenas";
+import { LogoGoogle } from "@/components/logo-google";
 import { services } from "@/lib/services";
 import { certifications, training, whatsappUrl } from "@/lib/site";
 
@@ -138,38 +137,40 @@ export default async function HomePage() {
       </Section>
 
       <section id="resenas" className="relative isolate scroll-mt-24 overflow-hidden border-t border-line bg-navy py-16 text-white sm:py-24">
-        <div aria-hidden className="absolute -left-40 top-1/2 -z-10 size-[28rem] -translate-y-1/2 rounded-full bg-gold/[0.07] blur-3xl" />
-        <div className="wrap grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14 2xl:gap-20">
-          <div className="text-center lg:text-left">
-            <p className="flex items-center justify-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold lg:justify-start">
-              <span aria-hidden className="h-px w-10 bg-gold" />
-              Reseñas de Google
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.5rem]">La confianza de nuestros clientes nos respalda</h2>
-            <p className="mt-4 text-mist lg:text-justify">
-              Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada.
-            </p>
-            <div className="mt-6 inline-flex items-center gap-4 rounded-lg border border-line bg-ink/40 px-5 py-3">
-              <p className="flex gap-0.5 text-gold" aria-hidden>
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star key={i} className="size-5 fill-current" />
-                ))}
-              </p>
-              <p className="text-left text-sm leading-tight">
-                <span className="block font-semibold text-paper">Clientes satisfechos</span>
-                <span className="text-xs text-stone">Opiniones publicadas en Google</span>
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-              <ButtonLink href={google.escribirResena} variant="gold">
-                Dejar una reseña en Google
-              </ButtonLink>
-              <ButtonLink href={google.verResenas} variant="outline">
-                Ver todas las reseñas
-              </ButtonLink>
-            </div>
+        <div aria-hidden className="absolute left-1/2 top-1/2 -z-10 size-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.08] blur-3xl" />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 opacity-[0.06] [background-image:radial-gradient(var(--color-gold)_1px,transparent_1px)] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"
+        />
+        <div className="wrap mx-auto max-w-3xl text-center">
+          <span className="relative mx-auto grid size-20 place-items-center rounded-full bg-white shadow-[0_18px_40px_-12px_rgb(212_160_23/0.45)] ring-4 ring-gold/30 ring-offset-4 ring-offset-navy">
+            <LogoGoogle className="size-10" />
+          </span>
+          <p aria-label="Cinco estrellas" className="mt-7 flex justify-center gap-1 text-gold">
+            {Array.from({ length: 5 }, (_, i) => (
+              <svg key={i} aria-hidden viewBox="0 0 24 24" className="size-6 fill-current drop-shadow-[0_2px_6px_rgb(212_160_23/0.45)]">
+                <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.3l-5.9 3.2 1.3-6.6-4.9-4.5 6.6-.8z" />
+              </svg>
+            ))}
+          </p>
+          <p className="mt-6 flex items-center justify-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-gold">
+            <span aria-hidden className="h-px w-10 bg-gold" />
+            Reseñas de Google
+            <span aria-hidden className="h-px w-10 bg-gold" />
+          </p>
+          <h2 className="mt-4 font-display text-3xl font-bold leading-tight sm:text-[2.75rem]">La confianza de nuestros clientes nos respalda</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-mist">
+            Conoce las experiencias de quienes han confiado en Lex Data Corp® para recibir asesoría jurídica especializada, o
+            cuéntanos la tuya.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <ButtonLink href={google.verResenas} variant="gold">
+              Ver todas las reseñas
+            </ButtonLink>
+            <ButtonLink href={google.escribirResena} variant="outline">
+              Dejar una reseña en Google
+            </ButtonLink>
           </div>
-          <CarruselResenas resenas={resenas} />
         </div>
       </section>
 
