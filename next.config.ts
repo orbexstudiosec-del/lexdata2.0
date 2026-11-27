@@ -1,6 +1,25 @@
 import type { NextConfig } from "next";
 
+/**
+ * Política de seguridad de contenido. Imágenes de las noticias desde el panel; videos de YouTube en las noticias;
+ * Cloudflare sirve su propio script de protección bajo /cdn-cgi (mismo origen).
+ */
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://protecciondedatos.lexdata.com.ec",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "frame-src https://www.youtube-nocookie.com https://www.youtube.com https://challenges.cloudflare.com",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+].join("; ");
+
 const securityHeaders = [
+  { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
