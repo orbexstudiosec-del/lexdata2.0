@@ -1,4 +1,4 @@
-import { ClipboardCheck, FileSearch, GraduationCap, Lock, Scale, UserCheck, Users } from "lucide-react";
+import { ClipboardCheck, FileSearch, GraduationCap, ListChecks, Lock, Scale, UserCheck, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink, PageHero, Section, SectionHeading } from "@/components/ui";
@@ -46,8 +46,8 @@ const services = [
 
 
 const platform = [
-  { Icon: FileSearch, title: "Gestión centralizada", text: "Acceso a la plataforma de documentación y seguimiento de cumplimiento." },
-  { Icon: Lock, title: "Acceso exclusivo", text: "Entorno de trabajo destinado a clientes autorizados." },
+  { Icon: ListChecks, title: "Seguimiento continuo", text: "Avance de la implementación y del cumplimiento normativo de su organización." },
+  { Icon: Lock, title: "Acceso exclusivo", text: "Entorno privado con cuentas institucionales y doble factor de autenticación." },
   { Icon: Users, title: "Asesoría especializada", text: "Acompañamiento jurídico en protección de datos personales y cumplimiento normativo." },
 ];
 
@@ -168,15 +168,10 @@ export default async function DataProtectionPage() {
       <Section band>
         <SectionHeading
           center
-          label="Plataforma exclusiva para nuestros clientes"
+          label="Incluida en nuestra asesoría"
           title="Plataforma exclusiva para nuestros clientes"
-          lead="Nuestros clientes autorizados cuentan con acceso a una plataforma especializada para consultar la documentación y la información de cumplimiento disponible en su entorno privado."
+          lead="Los clientes de nuestra asesoría en protección de datos acceden, sin costo adicional, a un entorno privado para dar seguimiento al avance de su cumplimiento junto a nuestro equipo."
         />
-        <p className="mt-6 text-center">
-          <span className="gold-metal inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-[0.1em] text-ink">
-            Incluida en la asesoría, sin costo adicional
-          </span>
-        </p>
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {platform.map(({ Icon, title, text }) => (
             <li key={title} className="card p-8 text-center">
