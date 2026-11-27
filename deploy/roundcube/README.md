@@ -9,6 +9,8 @@ Se conecta al servidor de correo del propio VPS (ver `../correo/README.md`).
 | `php.ini` | `/etc/php/8.5/fpm/conf.d/99-roundcube.ini` |
 | `fail2ban-jail.local` | `/etc/fail2ban/jail.d/roundcube.local` |
 | `fail2ban-filter.conf` | `/etc/fail2ban/filter.d/roundcube-lexdata.conf` |
+| `fail2ban-action-caddy-webmail.conf` | `/etc/fail2ban/action.d/caddy-webmail.conf` |
+| `lexdata-webmail-bloqueo` | `/usr/local/bin/lexdata-webmail-bloqueo` (755) |
 
 El bloque de Caddy está en `../Caddyfile`.
 
@@ -23,6 +25,10 @@ El bloque de Caddy está en `../Caddyfile`.
 - Sin instalador web (se borró `installer/`). Límite de 3 intentos de inicio de sesión por minuto.
 - fail2ban bloquea durante 1 hora la IP que falle 5 veces en 10 minutos. El filtro usa la IP real
   de la conexión, por eso el subdominio debe ir **sin proxy** en Cloudflare (nube gris).
+- El bloqueo es **solo del webmail**: Caddy responde «Demasiados intentos fallidos» (429) en
+  correo.lexdata.com.ec, y esa conexión sigue pudiendo abrir la plataforma y el resto de páginas.
+  Ver IPs bloqueadas: `lexdata-webmail-bloqueo lista`. Desbloquear:
+  `fail2ban-client set roundcube-auth unbanip <ip>`.
 
 ## Clave `des_key`
 

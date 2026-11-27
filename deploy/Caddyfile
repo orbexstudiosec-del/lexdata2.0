@@ -18,6 +18,8 @@ http://2.31.79.129 {
 }
 
 (roundcube) {
+	# IPs bloqueadas por intentos fallidos (fail2ban → lexdata-webmail-bloqueo): solo en el webmail.
+	import /etc/caddy/webmail-bloqueados.caddy
 	root * /srv/roundcube/public_html
 	encode zstd gzip
 	php_fastcgi unix//run/php/php8.5-fpm.sock

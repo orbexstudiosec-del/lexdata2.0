@@ -1,7 +1,10 @@
+# /etc/fail2ban/jail.d/roundcube.local
+# 5 intentos fallidos en 10 minutos: 1 hora sin poder usar el webmail.
+# Solo el webmail: la acción caddy-webmail no corta la conexión con el resto del servidor.
 [roundcube-auth]
 filter   = roundcube-lexdata
 enabled  = true
-port     = http,https
+action   = caddy-webmail
 logpath  = /srv/roundcube/logs/userlogins.log
 maxretry = 5
 findtime = 10m
