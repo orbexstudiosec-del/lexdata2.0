@@ -27,14 +27,11 @@ virtual_alias_maps = texthash:/etc/postfix/virtual
 virtual_transport = lmtp:unix:private/dovecot-lmtp
 
 # --- Envío al exterior -----------------------------------------------------
-# Hetzner bloquea el puerto 25 de salida. Mientras no se desbloquee, el correo
-# sale por Resend (smtp.resend.com:587). Clave en /etc/postfix/sasl_passwd (solo en el servidor).
-relayhost = [smtp.resend.com]:587
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = texthash:/etc/postfix/sasl_passwd
-smtp_sasl_security_options = noanonymous
-smtp_sasl_tls_security_options = noanonymous
-smtp_tls_security_level = encrypt
+# Entrega directa por el puerto 25 (Hetzner lo desbloqueó en noviembre de 2026).
+# TLS cuando el otro servidor lo ofrece; firma DKIM con rspamd (selector «lexdata»).
+relayhost =
+smtp_sasl_auth_enable = no
+smtp_tls_security_level = may
 smtp_tls_loglevel = 1
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 

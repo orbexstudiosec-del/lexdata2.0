@@ -20,7 +20,7 @@ ssh -i ~/.ssh/lexdata_vps_ed25519 root@2.31.79.129 lexdata-deploy
 ## Servidor
 
 - La app vive en `/srv/lexdata/app` y corre con el usuario de sistema `lexdata`, sin privilegios.
-- Variables de entorno (clave de Resend para el formulario): `/srv/lexdata/app/.env.local`.
+- Variables de entorno (conexión con el panel de noticias y políticas): `/srv/lexdata/app/.env.local`.
 - Firewall `ufw`: solo 22, 80 y 443. También están activos `fail2ban` y las actualizaciones
   de seguridad automáticas.
 - Node.js 24 (NodeSource), pnpm 11 y Caddy 2 (repositorio oficial).

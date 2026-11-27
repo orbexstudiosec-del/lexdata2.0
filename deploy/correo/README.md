@@ -31,17 +31,14 @@ Usuario: la dirección completa.
 
 ## Envío al exterior
 
-Hetzner bloquea el puerto 25 de salida en cuentas nuevas, así que el correo hacia fuera sale por
-**Resend** (`relayhost = [smtp.resend.com]:587`). La clave está solo en el servidor, en
-`/etc/postfix/sasl_passwd` (`[smtp.resend.com]:587 resend:re_...`); tras cambiarla, `postfix reload`.
-El dominio está verificado en Resend (región sa-east-1) con los registros DNS `resend._domainkey`,
-`send` y `rsend`. Plan gratis: 3.000 correos al mes y 100 al día; ver el historial en resend.com.
+El correo sale **directamente** desde el servidor por el puerto 25 (Hetzner lo desbloqueó en
+noviembre de 2026; antes salía por Resend, que ya no se usa). Requisitos que ya están puestos:
+DNS inverso de `2.31.79.129` = `mail.lexdata.com.ec`, SPF `v=spf1 mx ~all`, firma DKIM propia
+(selector `lexdata`) y DMARC. Comprobado con check-auth@verifier.port25.com: SPF, iprev y DKIM en «pass».
 
-El correo entrante no pasa por Resend: llega directo al servidor por el puerto 25.
-
-Para dejar de usar Resend: pedir a Hetzner el desbloqueo del puerto 25 (Console → Limits, cuando la
-cuenta lo permita; el DNS inverso de `2.31.79.129` ya es `mail.lexdata.com.ec`), vaciar
-`relayhost`, poner `smtp_tls_security_level = may` y recargar Postfix.
+El sistema de protección de datos envía sus correos (activación, contraseña) por este mismo
+servidor: `CORREO_SMTP=smtp://127.0.0.1:25` en `/srv/pdp/app/.env.local`. Los mensajes salen
+de `notificaciones@lexdata.com.ec`, que es un alias hacia `info@` (para recibir las respuestas).
 
 Ver la cola: `postqueue -p`. Reintentar ya: `postqueue -f`.
 
@@ -53,7 +50,6 @@ Ver la cola: `postqueue -p`. Reintentar ya: `postqueue -f`.
 | A | `correo`, `webmail` | `2.31.79.129` |
 | MX | `@` | `mail.lexdata.com.ec` (prioridad 10) |
 | TXT | `@` | `v=spf1 mx ~all` |
-| TXT, CNAME | `resend._domainkey`, `send`, `rsend` | los que indica Resend para el dominio |
 | TXT | `lexdata._domainkey` | la clave pública de `/var/lib/rspamd/dkim/lexdata.com.ec.lexdata.txt` |
 | TXT | `_dmarc` | `v=DMARC1; p=none;` |
 
